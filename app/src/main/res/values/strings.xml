@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">ClothingAPP</string>
+    <string name="logo_name">I Hate Ugly</string>
+    <string name="slogan_name">Hate Ugly, Love Style</string>
+    <string name="powered_by">Powered By Isaac Lee, Ollie Wright</string>
+
+
+    <!-- Strings for On Boarding Screen -->
+
+    <!--Titles-->
+    <string name="first_slide_title">Select between Men and Women</string>
+    <string name="second_slide_title">Select Type of Clothing</string>
+    <string name="third_slide_title">Sit Back And Enjoy</string>
+
+    <!--Descriptions-->
+    <string name="first_slide_desc">You can choose your matching gender, between Men and Women Clothing</string>
+    <string name="second_slide_desc">You can choose any type of Clothings of your choice, T-shirt, Hoodies, Pants - You name it!</string>
+    <string name="third_slide_desc">"I Hate Ugly" will handle everything for you. Sit back and Enjoy</string>
+    
+    <!--Buttons-->
+    <string name="skip_btn">Skip</string>
+    <string name="next_btn">Next</string>
+    <string name="let_get_started">Lets Get Started</string>
+    
+    
+    
+</resources>
