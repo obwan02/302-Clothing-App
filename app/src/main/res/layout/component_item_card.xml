@@ -12,6 +12,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
+
+            <!-- TODO: Remove shadows looking shit -->
             <TextView
                 android:id="@+id/item_card_text"
                 android:layout_width="wrap_content"
@@ -21,7 +23,7 @@
                 android:layout_alignTop="@id/item_card_image"
                 android:layout_alignStart="@id/item_card_image"
                 android:textColor="?android:attr/colorForegroundInverse"
-                android:shadowRadius="4"
+                android:shadowRadius="1"
                 android:shadowColor="?android:attr/colorForeground"
                 android:textAllCaps="true"
                 android:layout_margin="10dp"
