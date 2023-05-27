@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/category_card_height">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- TODO: Change the layout_height value to a dimension resource-->
+            <TextView
+                android:id="@+id/category_card_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PLACEHOLDER"
+                android:layout_alignParentStart="true"
+                android:layout_margin="10dp"
+                />
+
+            <ImageView
+                android:id="@+id/category_card_image"
+                android:layout_width="@dimen/category_card_height"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:text="PLACEHOLDER"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/sherpa_jacket_brown"
+                />
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+    
+</FrameLayout>

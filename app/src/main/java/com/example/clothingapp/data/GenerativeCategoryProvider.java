@@ -1,5 +1,6 @@
 package com.example.clothingapp.data;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,6 +18,8 @@ public class GenerativeCategoryProvider extends IProvider<Category> {
         for(ClothingItem item : allItems) {
             categoryNames.add(item.getCategory());
         }
+
+        categories = new ArrayList<>(categoryNames.size());
 
         for(String category : categoryNames) {
             // Filter all items that have the same category, and assign them under the

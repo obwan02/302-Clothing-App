@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="12dp"
         android:checkable="false">
         <RelativeLayout
@@ -20,7 +20,11 @@
                 android:elevation="1dp"
                 android:layout_alignTop="@id/item_card_image"
                 android:layout_alignStart="@id/item_card_image"
-                android:alpha="0.8"
+                android:textColor="?android:attr/colorForegroundInverse"
+                android:shadowRadius="4"
+                android:shadowColor="?android:attr/colorForeground"
+                android:textAllCaps="true"
+                android:layout_margin="10dp"
                 />
 
             <ImageView
@@ -33,7 +37,7 @@
                 android:layout_marginBottom="0dp"
                 android:adjustViewBounds="true"
                 android:padding="0dp"
-                android:scaleType="centerCrop"
+                android:scaleType="center"
                 android:src="@drawable/sherpa_jacket_brown" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>

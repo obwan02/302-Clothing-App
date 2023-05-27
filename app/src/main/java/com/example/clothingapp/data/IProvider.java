@@ -20,7 +20,7 @@ public abstract class IProvider<T> implements Iterable<T> {
             int index = 0;
             @Override
             public boolean hasNext() {
-                return index == count;
+                return index != count;
             }
 
             @Override
