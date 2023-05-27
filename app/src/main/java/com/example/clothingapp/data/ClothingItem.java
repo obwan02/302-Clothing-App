@@ -10,14 +10,17 @@ public class ClothingItem {
     private ClothesSize size;
     private List<String> imageResourceNames;
     private String description;
+    // NOTE(spec): Change from original spec here
+    private String category;
 
 
-    public ClothingItem(String name, float price, ClothesSize size, List<String> imageResourceNames, String description) {
+    public ClothingItem(String name, float price, ClothesSize size, List<String> imageResourceNames, String description, String category) {
         this.name = name;
         this.price = price;
         this.size = size;
         this.imageResourceNames = imageResourceNames;
         this.description = description;
+        this.category = category;
     }
 
     public String getName() {
@@ -58,5 +61,12 @@ public class ClothingItem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
