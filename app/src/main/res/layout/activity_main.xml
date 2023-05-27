@@ -16,16 +16,18 @@
         android:gravity="center_horizontal"
         />
     <androidx.appcompat.widget.SearchView
+        android:id="@+id/main_search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/trending"
+        android:id="@+id/main_trending"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"/>
+        android:layout_weight="2"
+        android:orientation="horizontal"/>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categories"
+        android:id="@+id/main_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"/>
