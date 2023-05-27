@@ -1,18 +1,17 @@
-package com.example.clothingapp.Common;
+package com.example.clothingapp.old;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Html;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.clothingapp.HelperClasses.SliderAdapter;
+import com.example.clothingapp.old.SliderAdapter;
 import com.example.clothingapp.R;
+import com.google.android.material.color.MaterialColors;
 
 public class OnBoarding extends AppCompatActivity {
 
@@ -53,7 +52,7 @@ public class OnBoarding extends AppCompatActivity {
         }
 
         if(dots.length > 0) {
-            dots[position].setTextColor(getResources().getColor(R.color.colorPrimaryDark, getTheme()));
+            dots[position].setTextColor(MaterialColors.getColor(dots[position], com.google.android.material.R.attr.colorTertiary));
         }
 
     }

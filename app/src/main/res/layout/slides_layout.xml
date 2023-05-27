@@ -20,7 +20,6 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
         android:text="TextView"
-        android:textColor="@color/black"
         android:textSize="20sp"
         android:visibility="visible"
         android:layout_below="@id/slider_image"
@@ -34,7 +33,6 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
         android:text="@string/first_slide_desc"
-        android:textColor="@color/black"
         android:layout_below="@id/slider_heading" />
 
 </RelativeLayout>

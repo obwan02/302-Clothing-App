@@ -1,4 +1,4 @@
-package com.example.clothingapp.User;
+package com.example.clothingapp.old;
 
 import androidx.appcompat.app.AppCompatActivity;
 

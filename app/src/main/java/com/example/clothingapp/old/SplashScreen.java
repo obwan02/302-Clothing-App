@@ -1,4 +1,4 @@
-package com.example.clothingapp.Common;
+package com.example.clothingapp.old;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.clothingapp.R;
-import com.example.clothingapp.User.UserDashboard;
 
 public class SplashScreen extends AppCompatActivity {
 
