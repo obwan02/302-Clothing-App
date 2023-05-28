@@ -14,13 +14,16 @@ import com.example.clothingapp.R;
 import com.example.clothingapp.activities.MainActivity;
 import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.IProvider;
+import com.example.clothingapp.listeners.RecycleViewClickListener;
 
 public class ItemCardAdapter extends RecyclerView.Adapter<ItemCardAdapter.CardViewHolder> {
 
     private IProvider<ClothingItem> itemProvider;
+    private RecycleViewClickListener<ClothingItem> listener;
 
-    public ItemCardAdapter(IProvider<ClothingItem> itemProvider) {
+    public ItemCardAdapter(IProvider<ClothingItem> itemProvider, RecycleViewClickListener<ClothingItem> listener) {
         this.itemProvider = itemProvider;
+        this.listener = listener;
     }
 
     public void updateProvider(@NonNull IProvider<ClothingItem> provider) {
@@ -31,11 +34,11 @@ public class ItemCardAdapter extends RecyclerView.Adapter<ItemCardAdapter.CardVi
     @NonNull
     @Override
     public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        var context = parent.getContext();
+        var layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
-        View view = layoutInflater.inflate(R.layout.component_item_card, parent, false);
-        return new CardViewHolder(view);
+        var view = layoutInflater.inflate(R.layout.component_item_card, parent, false);
+        return  new CardViewHolder(view);
     }
 
     @Override
@@ -53,6 +56,8 @@ public class ItemCardAdapter extends RecyclerView.Adapter<ItemCardAdapter.CardVi
 
         holder.image.setImageResource(imageResourceId);
         holder.text.setText(item.getName());
+
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(item, holder.itemView, position));
     }
 
     @Override

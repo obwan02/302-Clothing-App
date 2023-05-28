@@ -39,7 +39,7 @@
                 android:layout_marginBottom="0dp"
                 android:adjustViewBounds="true"
                 android:padding="0dp"
-                android:scaleType="center"
+                android:scaleType="centerCrop"
                 android:src="@drawable/sherpa_jacket_brown" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>

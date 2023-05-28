@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import com.example.clothingapp.R;
 import com.example.clothingapp.adapters.CategoryAdapter;
@@ -16,6 +18,7 @@ import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.GenerativeCategoryProvider;
 import com.example.clothingapp.data.IProvider;
 import com.example.clothingapp.data.StaticClothingItemProvider;
+import com.example.clothingapp.listeners.RecycleViewClickListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +34,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private ViewHolder vh;
+    private RecycleViewClickListener<ClothingItem> trendingListener = (clothingItem, view, pos) -> this.onTrendingItemClicked(clothingItem, view, pos);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         IProvider<ClothingItem> items = new StaticClothingItemProvider();
         IProvider<Category> categories = new GenerativeCategoryProvider(items);
 
-        vh.trending.setAdapter(new ItemCardAdapter(items));
+        vh.trending.setAdapter(new ItemCardAdapter(items, trendingListener));
         vh.trending.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         vh.categories.setAdapter(new CategoryAdapter(categories));
@@ -56,7 +61,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.updateProvider(provider);
     }
 
+    private void onTrendingItemClicked(ClothingItem item, View itemView, int position) {
+        Log.i("TEST", String.format("Item name: %s, position: %d", item.getName(), position));
 
+    }
 
 
 }
