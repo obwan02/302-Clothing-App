@@ -7,23 +7,35 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clothingapp.R;
-import com.example.clothingapp.activities.MainActivity;
 import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.IProvider;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
 
-public class ItemCardAdapter extends RecyclerView.Adapter<ItemCardAdapter.CardViewHolder> {
+import java.util.Optional;
+
+public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardViewHolder> {
 
     private IProvider<ClothingItem> itemProvider;
     private RecycleViewClickListener<ClothingItem> listener;
+    // NOTE(spec): New attribute here
+    private @LayoutRes int layoutId;
 
-    public ItemCardAdapter(IProvider<ClothingItem> itemProvider, RecycleViewClickListener<ClothingItem> listener) {
+    // NOTE(spec): Name changed here, and takes an extra parameter
+    /**
+     * Creates a new CardListAdapter.
+     *
+     * @param itemProvider provides the underlying data to the adapter
+     * @param layoutId the id of the layout to use for each item in the RecyclerView.
+     *                 The items inside each item are found using tags (see the tags resource folder)
+     */
+    public CardListAdapter(IProvider<ClothingItem> itemProvider, @LayoutRes int layoutId) {
         this.itemProvider = itemProvider;
-        this.listener = listener;
+        this.layoutId = layoutId;
     }
 
     public void updateProvider(@NonNull IProvider<ClothingItem> provider) {
@@ -37,8 +49,8 @@ public class ItemCardAdapter extends RecyclerView.Adapter<ItemCardAdapter.CardVi
         var context = parent.getContext();
         var layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
-        var view = layoutInflater.inflate(R.layout.component_item_card, parent, false);
-        return  new CardViewHolder(view);
+        View view = layoutInflater.inflate(layoutId, parent, false);
+        return new CardViewHolder(view);
     }
 
     @Override
@@ -68,12 +80,28 @@ public class ItemCardAdapter extends RecyclerView.Adapter<ItemCardAdapter.CardVi
     public static class CardViewHolder extends RecyclerView.ViewHolder {
 
         public final ImageView image;
-        public final TextView text;
+        public final TextView name;
+        public final Optional<TextView> price;
 
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.item_card_image);
-            text = itemView.findViewById(R.id.item_card_text);
+
+            var resources = itemView.getResources();
+            String imageTag = resources.getString(R.string.card_list_adapter_image_tag);
+            String nameTag = resources.getString(R.string.card_list_adapter_name_tag);
+            String priceTag = resources.getString(R.string.card_list_adapter_price_tag);
+
+            image = itemView.findViewWithTag(imageTag);
+            name = itemView.findViewWithTag(nameTag);
+            price = Optional.ofNullable(itemView.findViewWithTag(priceTag));
+
+            if(image == null) {
+                throw new RuntimeException("Could not find view with '@string/card_list_adapter_image_tag' in provided layout");
+            }
+
+            if(name == null) {
+                throw new RuntimeException("Could not find view with '@string/card_list_adapter_name_tag' in provided layout");
+            }
         }
 
     }

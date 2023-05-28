@@ -24,6 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.ListActivity"
+                  android:exported="false" />
         <activity
             android:name=".old.OnBoarding"
             android:exported="false" />

@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="12dp"
-        android:checkable="false">
+        android:clickable="true">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
-            <!-- TODO: Remove shadows looking shit -->
             <TextView
-                android:id="@+id/item_card_text"
+                android:id="@+id/item_card_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CLOTHING ITEM"
-                android:elevation="1dp"
-                android:layout_alignTop="@id/item_card_image"
-                android:layout_alignStart="@id/item_card_image"
-                android:textColor="?android:attr/colorForegroundInverse"
-                android:shadowRadius="1"
-                android:shadowColor="?android:attr/colorForeground"
-                android:textAllCaps="true"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
+                android:text="PLACEHOLDER NAME"
+                android:layout_alignParentStart="true"
+                android:tag="@string/card_list_adapter_name_tag"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="$999.99"
+                android:layout_below="@id/item_card_name"
+                android:tag="@string/card_list_adapter_price_tag"
                 />
 
             <ImageView
-                android:id="@+id/item_card_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp"
+                android:layout_width="@dimen/category_card_height"
+                android:layout_height="@dimen/category_card_height"
                 android:adjustViewBounds="true"
-                android:padding="0dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/sherpa_jacket_brown" />
+                android:src="@drawable/sherpa_jacket_brown"
+                android:layout_alignParentEnd="true"
+                android:tag="@string/card_list_adapter_image_tag"
+                />
+
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
+
 </FrameLayout>
