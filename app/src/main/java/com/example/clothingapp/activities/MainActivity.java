@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         vh.categories.setAdapter(new CategoryAdapter(categories));
         var layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         vh.categories.setLayoutManager(layout);
+
+        this.startActivity(new Intent(this,ClothingItemActivity.class));
     }
 
     protected void updateTrending(IProvider<ClothingItem> provider) {
