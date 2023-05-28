@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
         IProvider<ClothingItem> items = new StaticClothingItemProvider();
         IProvider<Category> categories = new GenerativeCategoryProvider(items);
 
-        vh.trending.setAdapter(new CardListAdapter(items, R.layout.component_trending_card));
+        var trendingAdapter = new CardListAdapter(items, R.layout.component_trending_card);
+        trendingAdapter.setListener(this.trendingListener);
+        vh.trending.setAdapter(trendingAdapter);
         vh.trending.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         vh.categories.setAdapter(new CategoryAdapter(categories));
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void onTrendingItemClicked(ClothingItem item, View itemView, int position) {
         Log.i("TEST", String.format("Item name: %s, position: %d", item.getName(), position));
-
+        startActivity(new Intent(this, ClothingItemActivity.class));
     }
 
 

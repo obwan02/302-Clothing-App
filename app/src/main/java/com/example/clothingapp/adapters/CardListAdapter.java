@@ -38,6 +38,10 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
         this.layoutId = layoutId;
     }
 
+    public void setListener(RecycleViewClickListener<ClothingItem> listener) {
+        this.listener = listener;
+    }
+
     public void updateProvider(@NonNull IProvider<ClothingItem> provider) {
         // TODO: Tell android we have updated the underlying data
         this.itemProvider = provider;
@@ -67,9 +71,11 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
         }
 
         holder.image.setImageResource(imageResourceId);
-        holder.text.setText(item.getName());
+        holder.name.setText(item.getName());
 
-        holder.itemView.setOnClickListener(v -> listener.onItemClick(item, holder.itemView, position));
+        if(listener != null) {
+            holder.itemView.setOnClickListener(v -> listener.onItemClick(item, holder.itemView, position));
+        }
     }
 
     @Override
