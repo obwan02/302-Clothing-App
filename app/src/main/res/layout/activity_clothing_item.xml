@@ -94,11 +94,12 @@
     </LinearLayout>
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu" />
+        android:id="@+id/fragment_container_view"
+        android:name="com.example.clothingapp.fragments.NavigationBar"
+        />
 
 
 
