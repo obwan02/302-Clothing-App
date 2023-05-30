@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         vh.categories.setAdapter(categoryAdapter);
         var layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         vh.categories.setLayoutManager(layout);
+
+        startActivity(new Intent(this, CheckOutActivity.class));
     }
 
     private void onTrendingItemClicked(ClothingItem item, View itemView, int position) {

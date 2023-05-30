@@ -45,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="PAYMENT DETAILS"
+
         android:layout_marginLeft="16dp"
         android:layout_marginVertical="7dp" />
 
@@ -63,6 +64,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginVertical="10dp"
             android:hint="CARD NUMBER"
+            android:gravity="center"
+            android:singleLine="true"
             tools:layout_editor_absoluteY="151dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -85,7 +88,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginVertical="10dp"
-            android:hint="NAME ON CARD"/>
+            android:hint="NAME ON CARD"
+            android:singleLine="true"
+            android:gravity="center"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +106,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:hint="CVV"/>
+                android:hint="CVV"
+                android:gravity="center"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,6 +129,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginVertical="10dp"
         android:hint="EMAIL"
+        android:gravity="center"
+        android:singleLine="true"
         tools:layout_editor_absoluteY="151dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -153,6 +162,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginVertical="10dp"
         android:hint="ADDRESS"
+        android:gravity="center"
+        android:singleLine="true"
         tools:layout_editor_absoluteY="151dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
