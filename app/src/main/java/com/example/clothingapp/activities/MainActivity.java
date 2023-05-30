@@ -21,6 +21,7 @@ import com.example.clothingapp.data.GenerativeCategoryProvider;
 import com.example.clothingapp.data.IProvider;
 import com.example.clothingapp.data.StaticClothingItemProvider;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
+import com.example.clothingapp.old.SplashScreen;
 
 import java.io.Serializable;
 
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         var layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         vh.categories.setLayoutManager(layout);
 
-        startActivity(new Intent(this, ThankYouActivity.class));
+        startActivity(new Intent(this, SplashScreen.class));
     }
 
     private void onTrendingItemClicked(ClothingItem item, View itemView, int position) {
