@@ -75,6 +75,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
 
         holder.image.setImageResource(imageResourceId);
         holder.name.setText(item.getName());
+        holder.price.ifPresent(priceView -> priceView.setText(String.format("%.2f", item.getPrice())));
 
         if(listener != null) {
             holder.itemView.setOnClickListener(v -> listener.onItemClick(item, holder.itemView, position));
