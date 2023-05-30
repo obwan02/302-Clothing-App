@@ -7,13 +7,6 @@
     tools:context=".old.SplashScreen">
 
 
-    <ImageView
-        android:id="@+id/background_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/splash_screen_background"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/powered_by_line"
         android:layout_width="219dp"
@@ -25,6 +18,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/brand_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/brandlogo"
+        tools:layout_editor_absoluteY="184dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
