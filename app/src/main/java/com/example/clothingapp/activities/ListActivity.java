@@ -21,6 +21,7 @@ import com.example.clothingapp.data.IProvider;
 import com.example.clothingapp.data.NullProvider;
 import com.example.clothingapp.data.StaticClothingItemProvider;
 import com.example.clothingapp.fragments.FilterBottomSheet;
+import com.example.clothingapp.fragments.SortBottomSheet;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -34,13 +35,16 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
     private static class ViewHolder {
 
         public final RecyclerView items;
-        public final Button filterButton;
+        public final Button filterButton, sortButton;
         public final FilterBottomSheet filterBottomSheet;
+        public final SortBottomSheet sortBottomSheet;
         public ViewHolder(Activity activity) {
             items = activity.findViewById(R.id.list_items);
             filterButton = activity.findViewById(R.id.list_filter_button);
+            sortButton = activity.findViewById(R.id.list_sort_button);
 
             filterBottomSheet = new FilterBottomSheet();
+            sortBottomSheet = new SortBottomSheet();
         }
 
     }
@@ -69,6 +73,7 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
 
         // Buttons
         vh.filterButton.setOnClickListener(x -> this.onFilterButtonClicked(x));
+        vh.sortButton.setOnClickListener(x -> this.onSortButtonClicked(x));
     }
     @Override
     public void onItemClick(ClothingItem item, View itemView, int position) {
@@ -80,6 +85,10 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
 
     private void onFilterButtonClicked(View v) {
         vh.filterBottomSheet.show(getSupportFragmentManager(), FilterBottomSheet.TAG);
+    }
+
+    private void onSortButtonClicked(View v) {
+        vh.sortBottomSheet.show(getSupportFragmentManager(), SortBottomSheet.TAG);
     }
 
 }

@@ -30,30 +30,32 @@
         android:orientation="horizontal">
 
         <Space
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2"
             />
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:text="MALE"
+            app:icon="@drawable/ic_tick"
             style="@style/Widget.Material3.Button.OutlinedButton"
             />
 
         <Space
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="2"
             />
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:text="FEMALE"
+            app:icon="@drawable/ic_tick"
             style="@style/Widget.Material3.Button.OutlinedButton"
             />
 

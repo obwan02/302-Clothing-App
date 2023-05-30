@@ -9,17 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.clothingapp.R;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class FilterBottomSheet extends BottomSheetDialogFragment {
+public class SortBottomSheet extends BottomSheetDialogFragment {
 
-    public static final String TAG = "FilterBottomSheet";
+    public static final String TAG = "SortBottomSheet";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.frag_filter_list, container, false);
-        return v;
+        return inflater.inflate(R.layout.frag_sort_list, container, false);
     }
 }
