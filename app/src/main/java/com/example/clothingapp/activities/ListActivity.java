@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.clothingapp.R;
@@ -19,7 +20,10 @@ import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.IProvider;
 import com.example.clothingapp.data.NullProvider;
 import com.example.clothingapp.data.StaticClothingItemProvider;
+import com.example.clothingapp.fragments.FilterBottomSheet;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.Serializable;
 
@@ -29,9 +33,14 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
 
     private static class ViewHolder {
 
-        public RecyclerView items;
+        public final RecyclerView items;
+        public final Button filterButton;
+        public final FilterBottomSheet filterBottomSheet;
         public ViewHolder(Activity activity) {
             items = activity.findViewById(R.id.list_items);
+            filterButton = activity.findViewById(R.id.list_filter_button);
+
+            filterBottomSheet = new FilterBottomSheet();
         }
 
     }
@@ -57,6 +66,9 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
         adapter.setListener(this);
         vh.items.setAdapter(adapter);
         vh.items.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+        // Buttons
+        vh.filterButton.setOnClickListener(x -> this.onFilterButtonClicked(x));
     }
     @Override
     public void onItemClick(ClothingItem item, View itemView, int position) {
@@ -64,6 +76,10 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
         intent.putExtra(ClothingItemActivity.INTENT_CLOTHING_ITEM_KEY, item);
 
         startActivity(intent);
+    }
+
+    private void onFilterButtonClicked(View v) {
+        vh.filterBottomSheet.show(getSupportFragmentManager(), FilterBottomSheet.TAG);
     }
 
 }
