@@ -2,11 +2,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/category_card_height">
+        android:layout_height="@dimen/category_card_height"
+        app:cardBackgroundColor="?android:attr/colorBackground"
+        app:strokeColor="?attr/colorOnSurface">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -20,6 +23,8 @@
                 android:text="PLACEHOLDER"
                 android:layout_alignParentStart="true"
                 android:layout_margin="10dp"
+                android:textColor="?attr/colorOnSurface"
+                android:textAllCaps="true"
                 />
 
             <ImageView

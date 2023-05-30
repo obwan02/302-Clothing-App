@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/trending_card_width"
         android:layout_height="match_parent"
         android:layout_margin="12dp"
         android:checkable="false">
@@ -14,30 +15,37 @@
             >
 
             <!-- TODO: Remove shadows looking shit -->
-            <TextView
-                android:id="@+id/trending_card_text"
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CLOTHING ITEM"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
                 android:elevation="1dp"
-                android:layout_alignTop="@id/trending_card_image"
-                android:layout_alignStart="@id/trending_card_image"
-                android:textColor="?android:attr/colorForegroundInverse"
-                android:shadowRadius="1"
-                android:shadowColor="?android:attr/colorForeground"
-                android:textAllCaps="true"
-                android:layout_margin="10dp"
-                android:tag="@string/card_list_adapter_name_tag"
-                />
+                android:background="?attr/colorSurface">
+                <TextView
+                    android:id="@+id/trending_card_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CLOTHING ITEM"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:padding="10dp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textAllCaps="true"
+                    android:tag="@string/card_list_adapter_name_tag"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="12sp"
+                    android:autoSizeMaxTextSize="100sp"
+                    android:autoSizeStepGranularity="2sp"
+                    />
+            </FrameLayout>
 
             <ImageView
+                android:layout_alignParentBottom="true"
                 android:id="@+id/trending_card_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp"
                 android:adjustViewBounds="true"
                 android:padding="0dp"
                 android:scaleType="center"
