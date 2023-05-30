@@ -57,8 +57,16 @@ public class ClothingItemActivity extends AppCompatActivity {
             Log.w(getPackageName(), "No ClothingItem passed to ClothingItemActivity");
         }
 
+        this.update(item);
+    }
 
-
-
+    private void update(ClothingItem item) {
+        int imageId = this
+                        .getResources()
+                        .getIdentifier(item.getImageResourceNames().stream().findFirst().orElse("sherpa_jacket_brown"),
+                        "drawable", getPackageName());
+        vh.image.setImageResource(imageId);
+        vh.title.setText(item.getName());
+        vh.price.setText(String.format("$ %.2f", item.getPrice()));
     }
 }

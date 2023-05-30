@@ -73,8 +73,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onTrendingItemClicked(ClothingItem item, View itemView, int position) {
-        Log.i("TEST", String.format("Item name: %s, position: %d", item.getName(), position));
-        startActivity(new Intent(this, ClothingItemActivity.class));
+        var intent = new Intent(this, ClothingItemActivity.class);
+        intent.putExtra(ClothingItemActivity.INTENT_CLOTHING_ITEM_KEY, item);
+
+        startActivity(intent);
     }
 
     private void onCategoryClicked(Category cat, View itemView, int position) {

@@ -1,8 +1,9 @@
 package com.example.clothingapp.data;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ClothingItem {
+public class ClothingItem implements Serializable {
 
     private String name;
     // TODO: private Category category

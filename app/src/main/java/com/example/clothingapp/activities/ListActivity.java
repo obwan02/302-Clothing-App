@@ -21,6 +21,8 @@ import com.example.clothingapp.data.NullProvider;
 import com.example.clothingapp.data.StaticClothingItemProvider;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
 
+import java.io.Serializable;
+
 public class ListActivity extends AppCompatActivity implements RecycleViewClickListener<ClothingItem> {
 
     public static final String INTENT_PROVIDER_KEY = "clothingProvider";
@@ -58,8 +60,10 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
     }
     @Override
     public void onItemClick(ClothingItem item, View itemView, int position) {
-        Log.d("TEST", "Clicked on list activity");
-        startActivity(new Intent(this, ClothingItemActivity.class));
+        var intent = new Intent(this, ClothingItemActivity.class);
+        intent.putExtra(ClothingItemActivity.INTENT_CLOTHING_ITEM_KEY, item);
+
+        startActivity(intent);
     }
 
 }
