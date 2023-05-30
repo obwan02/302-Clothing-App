@@ -2,12 +2,13 @@ package com.example.clothingapp.data;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
-public abstract class IProvider<T> implements Iterable<T> {
+public abstract class IProvider<T> implements Iterable<T>, Serializable {
 
     public abstract int getCount();
     public abstract T getItem(int index);

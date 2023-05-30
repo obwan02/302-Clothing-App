@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
@@ -20,6 +21,8 @@ import com.example.clothingapp.data.GenerativeCategoryProvider;
 import com.example.clothingapp.data.IProvider;
 import com.example.clothingapp.data.StaticClothingItemProvider;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
+
+import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewHolder vh;
     private RecycleViewClickListener<ClothingItem> trendingListener = (clothingItem, view, pos) -> this.onTrendingItemClicked(clothingItem, view, pos);
+    private RecycleViewClickListener<Category> categoryListener = (cat, view, pos) -> this.onCategoryClicked(cat, view, pos);
+
+    private IProvider<ClothingItem> allItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,28 +51,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         vh = new ViewHolder(this);
+        allItems = new StaticClothingItemProvider();
 
-        IProvider<ClothingItem> items = new StaticClothingItemProvider();
-        IProvider<Category> categories = new GenerativeCategoryProvider(items);
+        // TODO: change this
+        IProvider<ClothingItem> trendingItems = allItems;
+        IProvider<Category> categories = new GenerativeCategoryProvider(allItems);
 
-        var trendingAdapter = new CardListAdapter(items, R.layout.component_trending_card);
+        var trendingAdapter = new CardListAdapter(trendingItems, R.layout.component_trending_card);
         trendingAdapter.setListener(this.trendingListener);
         vh.trending.setAdapter(trendingAdapter);
         vh.trending.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        vh.categories.setAdapter(new CategoryAdapter(categories));
+        var categoryAdapter = new CategoryAdapter(categories);
+        categoryAdapter.setListener(this.categoryListener);
+        vh.categories.setAdapter(categoryAdapter);
         var layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         vh.categories.setLayoutManager(layout);
-    }
-
-    protected void updateTrending(IProvider<ClothingItem> provider) {
-        CardListAdapter adapter = (CardListAdapter) vh.trending.getAdapter();
-        adapter.updateProvider(provider);
     }
 
     private void onTrendingItemClicked(ClothingItem item, View itemView, int position) {
         Log.i("TEST", String.format("Item name: %s, position: %d", item.getName(), position));
         startActivity(new Intent(this, ClothingItemActivity.class));
+    }
+
+    private void onCategoryClicked(Category cat, View itemView, int position) {
+        IProvider<ClothingItem> categoryItems = IProvider.filter(allItems, item -> {
+           return item.getCategory().equalsIgnoreCase(cat.getName());
+        });
+
+        var intent = new Intent(this, ListActivity.class);
+        intent.putExtra(ListActivity.INTENT_PROVIDER_KEY, categoryItems);
+
+        startActivity(intent);
     }
 
 

@@ -21,6 +21,7 @@ import java.util.Optional;
 public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardViewHolder> {
 
     private IProvider<ClothingItem> itemProvider;
+
     private RecycleViewClickListener<ClothingItem> listener;
     // NOTE(spec): New attribute here
     private @LayoutRes int layoutId;
@@ -37,14 +38,16 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
         this.itemProvider = itemProvider;
         this.layoutId = layoutId;
     }
-
     public void setListener(RecycleViewClickListener<ClothingItem> listener) {
         this.listener = listener;
     }
 
-    public void updateProvider(@NonNull IProvider<ClothingItem> provider) {
-        // TODO: Tell android we have updated the underlying data
-        this.itemProvider = provider;
+    public IProvider<ClothingItem> getProvider() {
+        return itemProvider;
+    }
+
+    public void setProvider(IProvider<ClothingItem> itemProvider) {
+        this.itemProvider = itemProvider;
     }
 
     @NonNull

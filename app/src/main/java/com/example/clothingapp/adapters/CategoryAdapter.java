@@ -14,12 +14,26 @@ import com.example.clothingapp.R;
 import com.example.clothingapp.data.Category;
 import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.IProvider;
+import com.example.clothingapp.listeners.RecycleViewClickListener;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
     private IProvider<Category> categoryProvider;
+    private RecycleViewClickListener<Category> listener;
 
     public CategoryAdapter(IProvider<Category> categoryProvider) {
+        this.categoryProvider = categoryProvider;
+    }
+
+    public void setListener(RecycleViewClickListener<Category> listener) {
+        this.listener = listener;
+    }
+
+    public IProvider<Category> getProvider() {
+        return categoryProvider;
+    }
+
+    public void setProvider(IProvider<Category> categoryProvider) {
         this.categoryProvider = categoryProvider;
     }
 
@@ -40,6 +54,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         int imageResourceId = R.drawable.sherpa_jacket_brown;
         holder.image.setImageResource(imageResourceId);
         holder.text.setText(item.getName());
+
+        if(listener != null) {
+            holder.itemView.setOnClickListener(x -> listener.onItemClick(item, holder.itemView, position));
+        }
     }
 
     @Override
