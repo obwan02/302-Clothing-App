@@ -4,19 +4,20 @@ import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
-public abstract class IProvider<T> implements Iterable<T>, Serializable {
+public interface IProvider<T> extends Serializable {
 
-    public abstract int getCount();
-    public abstract T getItem(int index);
+    int getCount();
+    T getItem(int index);
 
     @NonNull
-    @Override
-    public final Iterator<T> iterator() {
-        return new Iterator<T>() {
+    default Iterable<T> iter() {
+        return () -> new Iterator<T>() {
             final int count = getCount();
             int index = 0;
             @Override
@@ -31,25 +32,31 @@ public abstract class IProvider<T> implements Iterable<T>, Serializable {
         };
     }
 
-    public static <Y> IProvider<Y> filter(IProvider<Y> input, Predicate<Y> filter) {
+    default IProvider<T> sort(Comparator<T> comparator) {
+        List<T> list = IProvider.toList(this);
+        list.sort(comparator);
+        return IProvider.fromList(list);
+    }
+
+    default IProvider<T> filter(Predicate<T> filter) {
         int filterCount = 0;
 
-        for (int i = 0; i < input.getCount(); i++) {
-            if(filter.test(input.getItem(i))) {
+        for (int i = 0; i < getCount(); i++) {
+            if(filter.test(getItem(i))) {
                 filterCount++;
             }
         }
 
         final List<Integer> indexMap = new ArrayList<>(filterCount);
-        for (int i = 0; i < input.getCount(); i++) {
-            if(filter.test(input.getItem(i))) {
+        for (int i = 0; i < getCount(); i++) {
+            if(filter.test(getItem(i))) {
                 indexMap.add(i);
             }
         }
 
         // Satisfy the compiler
         final int count = filterCount;
-        return new IProvider<Y>() {
+        return new IProvider<T>() {
 
             @Override
             public int getCount() {
@@ -57,9 +64,33 @@ public abstract class IProvider<T> implements Iterable<T>, Serializable {
             }
 
             @Override
-            public Y getItem(int index) {
+            public T getItem(int index) {
                 int mappedIndex = indexMap.get(index);
-                return input.getItem(mappedIndex);
+                return IProvider.this.getItem(mappedIndex);
+            }
+        };
+    }
+
+    static <Y> List<Y> toList(IProvider<Y> provider) {
+        var list = new ArrayList<Y>(provider.getCount());
+        for (int i = 0; i < provider.getCount(); i++) {
+            list.add(provider.getItem(i));
+        }
+
+        return list;
+    }
+
+    static <Y> IProvider<Y> fromList(List<Y> list) {
+        final var readOnly = Collections.unmodifiableList(list);
+        return new IProvider<Y>() {
+            @Override
+            public int getCount() {
+                return readOnly.size();
+            }
+
+            @Override
+            public Y getItem(int index) {
+                return readOnly.get(index);
             }
         };
     }

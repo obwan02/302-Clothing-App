@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onCategoryClicked(Category cat, View itemView, int position) {
-        IProvider<ClothingItem> categoryItems = IProvider.filter(allItems, item -> {
+        IProvider<ClothingItem> categoryItems = allItems.filter(item -> {
            return item.getCategory().equalsIgnoreCase(cat.getName());
         });
 

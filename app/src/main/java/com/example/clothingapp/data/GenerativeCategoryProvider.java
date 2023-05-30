@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class GenerativeCategoryProvider extends IProvider<Category> {
+public class GenerativeCategoryProvider implements IProvider<Category> {
 
     private List<Category> categories;
 
@@ -15,7 +15,7 @@ public class GenerativeCategoryProvider extends IProvider<Category> {
 
         // TODO: Make category names non case-sensitive
         Set<String> categoryNames = new HashSet<>();
-        for(ClothingItem item : allItems) {
+        for(ClothingItem item : allItems.iter()) {
             categoryNames.add(item.getCategory());
         }
 
@@ -24,7 +24,7 @@ public class GenerativeCategoryProvider extends IProvider<Category> {
         for(String category : categoryNames) {
             // Filter all items that have the same category, and assign them under the
             // current category
-            categories.add(new Category(category, IProvider.filter(allItems, clothingItem -> clothingItem.getCategory().equals(category))));
+            categories.add(new Category(category, allItems.filter(clothingItem -> clothingItem.getCategory().equals(category))));
         }
     }
 

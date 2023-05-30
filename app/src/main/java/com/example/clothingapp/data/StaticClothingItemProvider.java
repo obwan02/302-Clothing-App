@@ -2,7 +2,7 @@ package com.example.clothingapp.data;
 
 import java.util.ArrayList;
 
-public class StaticClothingItemProvider extends IProvider<ClothingItem> {
+public class StaticClothingItemProvider implements IProvider<ClothingItem> {
 
     private static ClothingItem[] items = {
             new ClothingItem("Oversize White Hoodie",
