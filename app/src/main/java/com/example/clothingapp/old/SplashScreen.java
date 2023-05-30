@@ -31,7 +31,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.splash_screen);
 
         //Hooks
-        backgroundImage = findViewById(R.id.background_image);
+        backgroundImage = findViewById(R.id.brand_logo);
         poweredByLine = findViewById(R.id.powered_by_line);
 
         //Animations
