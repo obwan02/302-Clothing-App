@@ -20,6 +20,7 @@ import java.util.Optional;
 
 public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardViewHolder> {
 
+    private Context context;
     private IProvider<ClothingItem> itemProvider;
 
     private RecycleViewClickListener<ClothingItem> listener;
@@ -34,9 +35,10 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
      * @param layoutId the id of the layout to use for each item in the RecyclerView.
      *                 The items inside each item are found using tags (see the tags resource folder)
      */
-    public CardListAdapter(IProvider<ClothingItem> itemProvider, @LayoutRes int layoutId) {
+    public CardListAdapter(Context context, IProvider<ClothingItem> itemProvider, @LayoutRes int layoutId) {
         this.itemProvider = itemProvider;
         this.layoutId = layoutId;
+        this.context = context;
     }
     public void setListener(RecycleViewClickListener<ClothingItem> listener) {
         this.listener = listener;
@@ -67,11 +69,11 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
         int imageResourceId = holder.image
                                     .getContext()
                                     .getResources()
-                                    .getIdentifier(item.getImageResourceNames().stream().findFirst().orElse(""),
-                                                   "drawable", "app");
-        if(imageResourceId == 0) {
-            imageResourceId = R.drawable.sherpa_jacket_brown;
-        }
+                                    .getIdentifier(item.getImageResourceNames()
+                                                       .stream()
+                                                       .findFirst()
+                                                       .orElse("sherpa_jacket_brown"),
+                                                   "drawable", context.getPackageName());
 
         holder.image.setImageResource(imageResourceId);
         holder.name.setText(item.getName());

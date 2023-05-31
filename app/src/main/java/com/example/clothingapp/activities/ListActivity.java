@@ -66,7 +66,7 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
 
         vh = new ViewHolder(this);
 
-        var adapter = new CardListAdapter(provider, R.layout.component_item_card);
+        var adapter = new CardListAdapter(this, provider, R.layout.component_item_card);
         adapter.setListener(this);
         vh.items.setAdapter(adapter);
         vh.items.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

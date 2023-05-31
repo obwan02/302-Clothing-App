@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         IProvider<ClothingItem> trendingItems = allItems;
         IProvider<Category> categories = new GenerativeCategoryProvider(allItems);
 
-        var trendingAdapter = new CardListAdapter(trendingItems, R.layout.component_trending_card);
+        var trendingAdapter = new CardListAdapter(this, trendingItems, R.layout.component_trending_card);
         trendingAdapter.setListener(this.trendingListener);
         vh.trending.setAdapter(trendingAdapter);
         vh.trending.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
