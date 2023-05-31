@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CHECKOUT"
+        android:fontFamily="monospace"
         android:textSize="40sp"
         android:gravity="center"
         tools:layout_editor_absoluteY="93dp" />

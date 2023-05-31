@@ -19,11 +19,12 @@
         android:id="@+id/checkout_checkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="THANK YOU\nFOR\nSHOPPING AT\nI HATE UGLY"
-        android:textSize="60sp"
         android:layout_centerInParent="true"
+        android:fontFamily="monospace"
         android:gravity="center_horizontal"
 
+        android:text="THANK YOU\nFOR\nSHOPPING AT\nI HATE UGLY"
+        android:textSize="60sp"
         tools:layout_editor_absoluteY="93dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
