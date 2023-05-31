@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 
 import com.example.clothingapp.R;
@@ -21,9 +19,6 @@ import com.example.clothingapp.data.GenerativeCategoryProvider;
 import com.example.clothingapp.data.IProvider;
 import com.example.clothingapp.data.StaticClothingItemProvider;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
-import com.example.clothingapp.old.SplashScreen;
-
-import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         vh.categories.setAdapter(categoryAdapter);
         var layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         vh.categories.setLayoutManager(layout);
-
-        startActivity(new Intent(this, SplashScreen.class));
     }
 
     private void onTrendingItemClicked(ClothingItem item, View itemView, int position) {

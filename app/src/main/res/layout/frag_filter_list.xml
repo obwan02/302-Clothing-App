@@ -24,48 +24,65 @@
         android:text="GENDER"
         />
 
-    <LinearLayout
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/filter_gender_group"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            />
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:text="MALE"
-            app:icon="@drawable/ic_tick"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            />
+            android:orientation="horizontal">
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                />
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:text="FEMALE"
-            app:icon="@drawable/ic_tick"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/filter_chip_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:text="MALE"
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_cross_diag"
+                app:checkedIcon="@drawable/ic_tick"
+                app:chipIconEnabled="false"
+                app:checkedIconEnabled="true"
+                android:checkable="true"
+                android:checked="true"/>
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                />
 
-    </LinearLayout>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/filter_chip_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:text="FEMALE"
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_cross_diag"
+                app:checkedIcon="@drawable/ic_tick"
+                app:chipIconEnabled="false"
+                app:checkedIconEnabled="true"
+                android:checkable="true"
+                android:checked="true"
+                />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                />
+
+        </LinearLayout>
+    </com.google.android.material.chip.ChipGroup>
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
@@ -82,119 +99,11 @@
         />
 
     <LinearLayout
-        android:layout_marginHorizontal="20dp"
+        android:id="@+id/filter_checkbox_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="≤XS (EXTRA SMALL + SMALLER)"
-            />
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="11"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginHorizontal="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="S (SMALL)"
-            />
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="122"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginHorizontal="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="M (MEDIUM)"
-            />
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="311"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginHorizontal="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="L (LARGE)"
-            />
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginHorizontal="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="≥LARGE (EXTRA LARGE + LARGER)"
-            />
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="50"
-            />
-    </LinearLayout>
+        android:orientation="vertical"
+        />
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
