@@ -63,26 +63,17 @@ public class ClothingItemActivity extends AppCompatActivity {
             Log.w(getPackageName(), "No ClothingItem passed to ClothingItemActivity");
         }
 
+        vh.title.setText(item.getName());
+        vh.price.setText(String.format("$ %.2f", item.getPrice()));
         vh.images.setAdapter(new ClothingItemImageAdapter(this, item));
         initDots(item);
         vh.images.registerOnPageChangeCallback(new ImageChangedCallback());
-        this.update(item);
-    }
-
-    private void update(ClothingItem item) {
-        int imageId = this
-                        .getResources()
-                        .getIdentifier(item.getImageResourceNames().stream().findFirst().orElse("sherpa_jacket_brown"),
-                        "drawable", getPackageName());
-        ((ClothingItemImageAdapter) vh.images.getAdapter()).setClothingItem(item);
-        vh.title.setText(item.getName());
-        vh.price.setText(String.format("$ %.2f", item.getPrice()));
     }
 
     private void initDots(ClothingItem item) {
         vh.dotsLayout.removeAllViews();
 
-        var imageResourceIds = item.getImageResourceNames();
+        var imageResourceIds = item.getImageUrls();
 
         for(var ignored : imageResourceIds) {
             vh.dotsLayout.addView(createDot());
@@ -92,7 +83,7 @@ public class ClothingItemActivity extends AppCompatActivity {
     private void updateDots(ClothingItem item) {
         vh.dotsLayout.removeAllViews();
 
-        var imageResourceIds = item.getImageResourceNames();
+        var imageResourceIds = item.getImageUrls();
 
         for(int i = 0; i < imageResourceIds.size(); i++) {
             vh.dotsLayout.addView(createDot(), i);

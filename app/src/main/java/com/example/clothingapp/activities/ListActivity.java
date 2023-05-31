@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Filter;
 import android.widget.Toast;
 
 import com.example.clothingapp.R;
@@ -49,6 +50,7 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
 
     }
     private ViewHolder vh;
+    private IProvider<ClothingItem> provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
         setContentView(R.layout.activity_list);
 
         var intent = getIntent();
-        IProvider<ClothingItem> provider = (IProvider<ClothingItem>) intent.getSerializableExtra(INTENT_PROVIDER_KEY);
+        provider = (IProvider<ClothingItem>) intent.getSerializableExtra(INTENT_PROVIDER_KEY);
 
         if(provider == null) {
             provider = new NullProvider();
@@ -84,6 +86,9 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
     }
 
     private void onFilterButtonClicked(View v) {
+        Bundle b = new Bundle();
+        b.putSerializable(FilterBottomSheet.BUNDLE_PROVIDER_KEY, provider);
+        vh.filterBottomSheet.setArguments(b);
         vh.filterBottomSheet.show(getSupportFragmentManager(), FilterBottomSheet.TAG);
     }
 

@@ -1,5 +1,7 @@
 package com.example.clothingapp.data;
 
+import java.util.Optional;
+
 public enum ClothesSize {
     XS(0),
     SMALL(1),
@@ -28,5 +30,26 @@ public enum ClothesSize {
         }
 
         return null;
+    }
+
+    public static Optional<ClothesSize> parseString(String string) {
+        string = string.strip();
+        String twochar = string.substring(0, 2 > string.length() ? string.length() : 2);
+        String onechar = string.substring(0, 1 > string.length() ? string.length() : 1);
+
+
+        if(twochar.equalsIgnoreCase("XS")) {
+            return Optional.of(XS);
+        } else if(onechar.equalsIgnoreCase("S")) {
+            return Optional.of(SMALL);
+        } else if(onechar.equalsIgnoreCase("M")) {
+            return Optional.of(MEDIUM);
+        } else if(onechar.equalsIgnoreCase("L")) {
+            return Optional.of(LARGE);
+        } else if(twochar.equalsIgnoreCase("XL")) {
+            return Optional.of(XL);
+        }
+
+        return Optional.empty();
     }
 }

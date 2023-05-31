@@ -9,17 +9,17 @@ public class ClothingItem implements Serializable {
     // TODO: private Category category
     private float price;
     private ClothesSize size;
-    private List<String> imageResourceNames;
+    private List<String> imageUrls;
     private String description;
     // NOTE(spec): Change from original spec here
     private String category;
 
 
-    public ClothingItem(String name, float price, ClothesSize size, List<String> imageResourceNames, String description, String category) {
+    public ClothingItem(String name, float price, ClothesSize size, List<String> imageUrls, String description, String category) {
         this.name = name;
         this.price = price;
         this.size = size;
-        this.imageResourceNames = imageResourceNames;
+        this.imageUrls = imageUrls;
         this.description = description;
         this.category = category;
     }
@@ -48,12 +48,12 @@ public class ClothingItem implements Serializable {
         this.size = size;
     }
 
-    public List<String> getImageResourceNames() {
-        return imageResourceNames;
+    public List<String> getImageUrls() {
+        return imageUrls;
     }
 
-    public void setImageResourceNames(List<String> imageResourceNames) {
-        this.imageResourceNames = imageResourceNames;
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
     }
 
     public String getDescription() {

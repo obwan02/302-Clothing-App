@@ -17,6 +17,7 @@ import com.example.clothingapp.data.Category;
 import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.GenerativeCategoryProvider;
 import com.example.clothingapp.data.IProvider;
+import com.example.clothingapp.data.JSONClothingProvider;
 import com.example.clothingapp.data.StaticClothingItemProvider;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
 
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         vh = new ViewHolder(this);
-        allItems = new StaticClothingItemProvider();
+        allItems = new JSONClothingProvider(this);
 
         // TODO: change this
         IProvider<ClothingItem> trendingItems = allItems;

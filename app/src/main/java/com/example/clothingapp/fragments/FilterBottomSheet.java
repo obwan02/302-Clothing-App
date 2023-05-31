@@ -8,12 +8,15 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.clothingapp.R;
 import com.example.clothingapp.data.ClothesSize;
+import com.example.clothingapp.data.ClothingItem;
+import com.example.clothingapp.data.IProvider;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.chip.Chip;
@@ -55,6 +58,7 @@ public class FilterBottomSheet extends BottomSheetDialogFragment {
         }
     };
     public static final String TAG = "FilterBottomSheet";
+    public static final String BUNDLE_PROVIDER_KEY = "filter_items";
 
     private ViewHolder vh;
 
@@ -71,6 +75,7 @@ public class FilterBottomSheet extends BottomSheetDialogFragment {
         vh.maleChip.setOnCheckedChangeListener((view, isChecked) -> this.onChipChanged(view, isChecked));
 
         Bundle bundle = getArguments();
+        IProvider<ClothingItem> items = (IProvider<ClothingItem>) bundle.getSerializable(BUNDLE_PROVIDER_KEY);
         
 
         for(var size : ClothesSize.values()) {
@@ -78,6 +83,10 @@ public class FilterBottomSheet extends BottomSheetDialogFragment {
 
             var checkbox = (CheckBox) vg.findViewById(R.id.filter_checkbox);
             checkbox.setText(size.getDisplayDescription());
+
+            int count = items.filter(x -> x.getSize().equals(size)).getCount();
+            var countTextView = (TextView) vg.findViewById(R.id.filter_checkbox_count);
+            countTextView.setText(String.format("%d", count));
 
             vh.checkBoxesLayout.addView(vg);
         }

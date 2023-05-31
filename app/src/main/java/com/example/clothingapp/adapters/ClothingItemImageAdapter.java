@@ -10,7 +10,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.clothingapp.R;
 import com.example.clothingapp.activities.ClothingItemActivity;
 import com.example.clothingapp.data.ClothingItem;
+import com.example.clothingapp.data.ImageDownloader;
 import com.example.clothingapp.fragments.ClothingItemImage;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ClothingItemImageAdapter extends FragmentStateAdapter {
 
@@ -30,11 +35,7 @@ public class ClothingItemImageAdapter extends FragmentStateAdapter {
 
         Bundle args = new Bundle();
 
-        int imageResourceId = activity
-                .getResources()
-                .getIdentifier(clothingItem.getImageResourceNames().get(position),
-                        "drawable", activity.getPackageName());
-        args.putInt(ClothingItemImage.BUNDLE_IMAGE_ID_KEY, imageResourceId);
+        args.putString(ClothingItemImage.BUNDLE_IMAGE_URL_KEY, clothingItem.getImageUrls().get(position));
 
         fragment.setArguments(args);
         return fragment;
@@ -42,7 +43,7 @@ public class ClothingItemImageAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return clothingItem.getImageResourceNames().size();
+        return clothingItem.getImageUrls().size();
     }
 
     public ClothingItem getClothingItem() {

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.clothingapp.R;
 import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.IProvider;
+import com.example.clothingapp.data.ImageDownloader;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
 
 import java.util.Optional;
@@ -24,6 +25,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
     private IProvider<ClothingItem> itemProvider;
 
     private RecycleViewClickListener<ClothingItem> listener;
+    private ImageDownloader downloader;
     // NOTE(spec): New attribute here
     private @LayoutRes int layoutId;
 
@@ -39,6 +41,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
         this.itemProvider = itemProvider;
         this.layoutId = layoutId;
         this.context = context;
+        this.downloader = new ImageDownloader(false);
     }
     public void setListener(RecycleViewClickListener<ClothingItem> listener) {
         this.listener = listener;
@@ -66,16 +69,10 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
         ClothingItem item = itemProvider.getItem(position);
 
-        int imageResourceId = holder.image
-                                    .getContext()
-                                    .getResources()
-                                    .getIdentifier(item.getImageResourceNames()
-                                                       .stream()
-                                                       .findFirst()
-                                                       .orElse("sherpa_jacket_brown"),
-                                                   "drawable", context.getPackageName());
+        downloader.loadSingle(itemProvider.getItem(position).getImageUrls().get(0), (bm, i) -> {
+            holder.image.setImageBitmap(bm);
+        });
 
-        holder.image.setImageResource(imageResourceId);
         holder.name.setText(item.getName());
         holder.price.ifPresent(priceView -> priceView.setText(String.format("%.2f", item.getPrice())));
 
