@@ -33,7 +33,7 @@
         android:textSize="20dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginVertical="40dp"/>
+        android:layout_marginVertical="20dp"/>
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
@@ -175,21 +175,23 @@
         />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/cart_checkout_button""
+        style="@style/Widget.Material3.FloatingActionButton.Large.Surface"
+        android:id="@+id/cart_checkout_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="10dp"
-        android:text="CHECKOUT"
-        app:icon="@drawable/ic_checkout"/>
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="right"
+        android:layout_alignBottom="@id/fragment_container_view"
+        android:text="PLACE ORDER"
+        app:icon="@drawable/ic_right_arrow"/>
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu" />
-
+        android:id="@+id/fragment_container_view"
+        android:name="com.example.clothingapp.fragments.NavigationBar"
+        />
 
 </LinearLayout>
 

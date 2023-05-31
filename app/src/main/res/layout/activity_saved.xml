@@ -17,58 +17,24 @@
         android:textAllCaps="true"/>
 
     <TextView
-        android:id="@+id/cart_cart"
+        android:id="@+id/saved_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CART"
+        android:text="SAVED"
         android:textSize="40sp"
         android:gravity="center"
         tools:layout_editor_absoluteY="93dp" />
-
-    <TextView
-        android:id="@+id/cart_total_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TOTAL: $XYZ"
-        android:textSize="20dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginVertical="40dp"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        style="@style/Widget.Material3.FloatingActionButton.Large.Surface"
-        android:id="@+id/cart_checkout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginBottom="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_above="@id/fragment_container_view"
-        android:text="CHECKOUT"
-        app:icon="@drawable/ic_checkout"/>
-
     <androidx.fragment.app.FragmentContainerView
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fragment_container_view"
         android:name="com.example.clothingapp.fragments.NavigationBar"
         />
 
-
-    </RelativeLayout>
-
 </LinearLayout>
-
-
-

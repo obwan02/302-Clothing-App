@@ -12,7 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.clothingapp.R;
+import com.example.clothingapp.activities.CartActivity;
+import com.example.clothingapp.activities.CheckOutActivity;
 import com.example.clothingapp.activities.MainActivity;
+import com.example.clothingapp.activities.SavedActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -46,10 +49,13 @@ public class NavigationBar extends Fragment implements NavigationBarView.OnItemS
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         if(item.getItemId() == R.id.menu_nav_home) {
+            intent.setClass(this.getContext(), MainActivity.class);
             startActivity(intent);
         } else if(item.getItemId() == R.id.menu_nav_saved) {
+            intent.setClass(this.getContext(), SavedActivity.class);
             startActivity(intent);
         } else if(item.getItemId() == R.id.menu_nav_cart) {
+            intent.setClass(this.getContext(), CartActivity.class);
             startActivity(intent);
         }
 
