@@ -19,6 +19,10 @@ public class ClothingItemImage extends Fragment {
     public static final String BUNDLE_IMAGE_URL_KEY = "clothing_item_url";
     private ImageDownloader downloader;
 
+    public void setDownloader(ImageDownloader downloader) {
+        this.downloader = downloader;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,7 +37,10 @@ public class ClothingItemImage extends Fragment {
         ImageView imageView = view.findViewById(R.id.clothing_item_image);
         TextView loadingText = view.findViewById(R.id.clothing_item_loading_text);
 
-        downloader = new ImageDownloader(true);
+        if(downloader == null) {
+            downloader = new ImageDownloader(true);
+        }
+
         downloader.loadSingle(url, (bitmap, i) -> {
             imageView.setImageBitmap(bitmap);
             imageView.setVisibility(View.VISIBLE);

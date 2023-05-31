@@ -19,6 +19,7 @@ import com.example.clothingapp.R;
 import com.example.clothingapp.adapters.CardListAdapter;
 import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.IProvider;
+import com.example.clothingapp.data.JSONClothingProvider;
 import com.example.clothingapp.data.NullProvider;
 import com.example.clothingapp.data.StaticClothingItemProvider;
 import com.example.clothingapp.fragments.FilterBottomSheet;
@@ -28,10 +29,12 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.Serializable;
+import java.util.function.Predicate;
 
 public class ListActivity extends AppCompatActivity implements RecycleViewClickListener<ClothingItem> {
 
-    public static final String INTENT_PROVIDER_KEY = "clothingProvider";
+    public static final String INTENT_CATEGORY_FILTER = "clothingCategory";
+    private IProvider<ClothingItem> allItems;
 
     private static class ViewHolder {
 
@@ -57,14 +60,15 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        var intent = getIntent();
-        provider = (IProvider<ClothingItem>) intent.getSerializableExtra(INTENT_PROVIDER_KEY);
+        allItems = new JSONClothingProvider(this);
 
-        if(provider == null) {
-            provider = new NullProvider();
-            // Warn if no provider is sent
-            Log.w(getPackageName(), "No provider passed to ListActivity");
-        };
+        var intent = getIntent();
+        String category = intent.getStringExtra(INTENT_CATEGORY_FILTER);
+        if(category != null) {
+            provider = allItems.filter(x -> x.getCategory().equalsIgnoreCase(category));
+        } else {
+            provider = allItems;
+        }
 
         vh = new ViewHolder(this);
 

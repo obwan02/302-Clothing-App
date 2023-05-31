@@ -9,22 +9,20 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JSONClothingProvider implements IProvider<ClothingItem> {
-
-    private Context context;
+public class JSONClothingProvider implements IProvider<ClothingItem>, Serializable {
     private ArrayList<ClothingItem> parsedItems;
 
     public JSONClothingProvider(Context context) {
-        this.context = context;
         parsedItems = new ArrayList<>();
 
         String json = null;
         try {
-            json = loadJSONString();
+            json = loadJSONString(context);
             loadFromJsonString(json);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -43,7 +41,7 @@ public class JSONClothingProvider implements IProvider<ClothingItem> {
         return parsedItems.get(index);
     }
 
-    private String loadJSONString() throws IOException {
+    private String loadJSONString(Context context) throws IOException {
         String json = null;
 
         InputStream is = context.getAssets().open("combo.json");

@@ -1,5 +1,6 @@
 package com.example.clothingapp.adapters;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ public class ClothingItemImageAdapter extends FragmentStateAdapter {
 
     private ClothingItem clothingItem;
     private FragmentActivity activity;
+    private ImageDownloader downloader = new ImageDownloader(false);
 
     public ClothingItemImageAdapter(@NonNull FragmentActivity activity, @NonNull ClothingItem item) {
         super(activity);
@@ -31,7 +33,8 @@ public class ClothingItemImageAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        Fragment fragment = new ClothingItemImage();
+        ClothingItemImage fragment = new ClothingItemImage();
+        fragment.setDownloader(downloader);
 
         Bundle args = new Bundle();
 

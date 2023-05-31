@@ -1,6 +1,7 @@
 package com.example.clothingapp.adapters;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,14 @@ import com.example.clothingapp.R;
 import com.example.clothingapp.data.Category;
 import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.IProvider;
+import com.example.clothingapp.data.ImageDownloader;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
     private IProvider<Category> categoryProvider;
     private RecycleViewClickListener<Category> listener;
+    private ImageDownloader downloader = new ImageDownloader(false);
 
     public CategoryAdapter(IProvider<Category> categoryProvider) {
         this.categoryProvider = categoryProvider;
@@ -51,8 +54,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Category item = categoryProvider.getItem(position);
 
-        int imageResourceId = R.drawable.sherpa_jacket_brown;
-        holder.image.setImageResource(imageResourceId);
+        downloader.loadSingle(item.getItems().getItem(0).getImageUrls().get(0), (bm, i) -> {
+            holder.image.setImageBitmap(bm);
+        });
+
         holder.text.setText(item.getName());
 
         if(listener != null) {

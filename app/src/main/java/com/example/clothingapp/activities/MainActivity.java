@@ -21,6 +21,9 @@ import com.example.clothingapp.data.JSONClothingProvider;
 import com.example.clothingapp.data.StaticClothingItemProvider;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
 
+import java.io.Serializable;
+import java.util.function.Predicate;
+
 public class MainActivity extends AppCompatActivity {
 
     private static class ViewHolder {
@@ -74,12 +77,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onCategoryClicked(Category cat, View itemView, int position) {
-        IProvider<ClothingItem> categoryItems = allItems.filter(item -> {
-           return item.getCategory().equalsIgnoreCase(cat.getName());
-        });
-
         var intent = new Intent(this, ListActivity.class);
-        intent.putExtra(ListActivity.INTENT_PROVIDER_KEY, categoryItems);
+        intent.putExtra(ListActivity.INTENT_CATEGORY_FILTER, cat.getName());
 
         startActivity(intent);
     }
