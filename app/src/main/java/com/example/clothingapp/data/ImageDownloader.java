@@ -46,7 +46,7 @@ public class ImageDownloader {
                     e.printStackTrace();
                 }
 
-                final var image = mImage;
+                final var image = Bitmap.createBitmap(mImage, mImage.getWidth()/4, 0, mImage.getWidth()/2, mImage.getHeight());
                 handler.post(() -> callback.onComplete(image, index));
 
             });
@@ -64,7 +64,7 @@ public class ImageDownloader {
                 e.printStackTrace();
             }
 
-            final var image = mImage;
+            final var image = Bitmap.createBitmap(mImage, mImage.getWidth()/4, 0, mImage.getWidth()/2, mImage.getHeight());
             handler.post(() -> callback.onComplete(image, 0));
 
         });
