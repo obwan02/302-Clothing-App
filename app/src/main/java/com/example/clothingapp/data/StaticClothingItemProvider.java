@@ -16,7 +16,8 @@ public class StaticClothingItemProvider implements IProvider<ClothingItem> {
                                              "sherpa_jacket_brown")
                                      .collect(Collectors.toCollection(ArrayList::new)),
                              "An oversize white hoodie for men or women",
-                             "Hoodies"),
+                             "Hoodies",
+                                      Gender.MALE),
 
             new ClothingItem("Dad Jeans - Black",
                     11.00f,
@@ -26,7 +27,8 @@ public class StaticClothingItemProvider implements IProvider<ClothingItem> {
                                     "sherpa_jacket_brown")
                             .collect(Collectors.toCollection(ArrayList::new)),
                     "A pair of black dad jeans - perfect for a baggy look",
-                    "Pants"),
+                    "Pants",
+                             Gender.FEMALE),
 
             new ClothingItem("Blue Shirt",
                     1.99f,
@@ -35,7 +37,8 @@ public class StaticClothingItemProvider implements IProvider<ClothingItem> {
                                     "sherpa_jacket_brown")
                             .collect(Collectors.toCollection(ArrayList::new)),
                     "A simple blue T-Shirt, with a crew neck",
-                    "Shirts"),
+                    "Shirts",
+                            Gender.MALE),
 
             new ClothingItem("Tweed Coat",
                     29.99f,
@@ -43,7 +46,8 @@ public class StaticClothingItemProvider implements IProvider<ClothingItem> {
                     Stream.of("sherpa_jacket_brown")
                             .collect(Collectors.toCollection(ArrayList::new)),
                     "A tweed coat",
-                    "Coats"),
+                    "Coats",
+                            Gender.MALE),
     };
 
     @Override

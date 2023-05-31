@@ -22,9 +22,10 @@ import com.example.clothingapp.data.StaticClothingItemProvider;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.function.Predicate;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private static class ViewHolder {
         public RecyclerView trending;
@@ -67,20 +68,33 @@ public class MainActivity extends AppCompatActivity {
         vh.categories.setAdapter(categoryAdapter);
         var layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         vh.categories.setLayoutManager(layout);
+
+        vh.searchBar.setOnQueryTextListener(this);
     }
 
     private void onTrendingItemClicked(ClothingItem item, View itemView, int position) {
         var intent = new Intent(this, ClothingItemActivity.class);
         intent.putExtra(ClothingItemActivity.INTENT_CLOTHING_ITEM_KEY, item);
-
         startActivity(intent);
     }
 
     private void onCategoryClicked(Category cat, View itemView, int position) {
         var intent = new Intent(this, ListActivity.class);
         intent.putExtra(ListActivity.INTENT_CATEGORY_FILTER, cat.getName());
-
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        var intent = new Intent(this, ListActivity.class);
+        intent.putExtra(ListActivity.INTENT_SEARCH_FILTER, vh.searchBar.getQuery().toString());
+        startActivity(intent);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 
 

@@ -68,7 +68,8 @@ public class JSONClothingProvider implements IProvider<ClothingItem>, Serializab
                     size,
                     convertImagesArray(jsonItem.getJSONArray("images")),
                     jsonItem.getString("description"),
-                    jsonItem.getString("category").toUpperCase()
+                    jsonItem.getString("category").toUpperCase(),
+                    Gender.parseString(jsonItem.getString("gender")).get()
             );
 
             parsedItems.add(item);

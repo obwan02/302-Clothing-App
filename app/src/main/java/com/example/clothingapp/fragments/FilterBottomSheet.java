@@ -17,6 +17,7 @@ import com.example.clothingapp.R;
 import com.example.clothingapp.data.ClothesSize;
 import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.IProvider;
+import com.example.clothingapp.data.JSONClothingProvider;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.chip.Chip;
@@ -24,7 +25,9 @@ import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -44,27 +47,44 @@ public class FilterBottomSheet extends BottomSheetDialogFragment {
         }
     }
 
-    private static class FilterOptions {
-        public final boolean maleClothes, femaleClothes, xsSize, sSize, mSize, lSize, xlSize;
+    public interface OptionsChangedCallback {
+        void onOptionsChanged(FilterOptions options);
+    }
 
-        private FilterOptions(boolean maleClothes, boolean femaleClothes, boolean xsSize, boolean sSize, boolean mSize, boolean lSize, boolean xlSize) {
+    public static class FilterOptions {
+        public final boolean maleClothes, femaleClothes;
+        public final EnumMap<ClothesSize, Boolean> sizes;
+
+        private FilterOptions(boolean maleClothes, boolean femaleClothes, EnumMap<ClothesSize, Boolean> sizes) {
             this.maleClothes = maleClothes;
             this.femaleClothes = femaleClothes;
-            this.xsSize = xsSize;
-            this.sSize = sSize;
-            this.mSize = mSize;
-            this.lSize = lSize;
-            this.xlSize = xlSize;
+            this.sizes = sizes;
         }
     };
     public static final String TAG = "FilterBottomSheet";
     public static final String BUNDLE_PROVIDER_KEY = "filter_items";
 
     private ViewHolder vh;
+    // Outside viewholder because they are instantiated at runtime
+    private EnumMap<ClothesSize, CheckBox> checkboxes = new EnumMap<>(ClothesSize.class);
+    private OptionsChangedCallback onOptionChangedCallback;
 
-//    public FilterOptions getFilterOptions() {
-//        return new FilterOptions(vh.maleChip.isChecked());
-//    }
+    public FilterOptions getFilterOptions() {
+        if(vh != null) {
+            EnumMap<ClothesSize, Boolean> sizes = new EnumMap<>(ClothesSize.class);
+            for(var size : checkboxes.keySet()) {
+                sizes.put(size, checkboxes.get(size).isChecked());
+            }
+
+            return new FilterOptions(vh.maleChip.isChecked(), vh.femaleChip.isChecked(), sizes);
+        }
+
+        return null;
+    }
+
+    public void setOnOptionChangedCallback(OptionsChangedCallback onOptionChangedCallback) {
+        this.onOptionChangedCallback = onOptionChangedCallback;
+    }
 
     @Nullable
     @Override
@@ -83,12 +103,16 @@ public class FilterBottomSheet extends BottomSheetDialogFragment {
 
             var checkbox = (CheckBox) vg.findViewById(R.id.filter_checkbox);
             checkbox.setText(size.getDisplayDescription());
+            checkbox.setChecked(true);
+            checkbox.setOnCheckedChangeListener((buttonView, isChecked) -> this.onRadioChanged(buttonView, isChecked, size));
 
+            // TODO: Dynamically update with filtering
             int count = items.filter(x -> x.getSize().equals(size)).getCount();
             var countTextView = (TextView) vg.findViewById(R.id.filter_checkbox_count);
             countTextView.setText(String.format("%d", count));
 
             vh.checkBoxesLayout.addView(vg);
+            checkboxes.put(size, checkbox);
         }
         return v;
     }
@@ -104,9 +128,15 @@ public class FilterBottomSheet extends BottomSheetDialogFragment {
 
         chip.setCheckedIconVisible(isChecked);
         chip.setChipIconVisible(!isChecked);
+
+        if(onOptionChangedCallback != null) {
+            onOptionChangedCallback.onOptionsChanged(getFilterOptions());
+        }
     }
 
-    private void onRadioChanged() {
-
+    private void onRadioChanged(CompoundButton view, boolean isChecked, ClothesSize size) {
+        if(onOptionChangedCallback != null) {
+            onOptionChangedCallback.onOptionsChanged(getFilterOptions());
+        }
     }
 }

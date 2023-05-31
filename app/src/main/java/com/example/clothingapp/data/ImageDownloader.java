@@ -66,7 +66,6 @@ public class ImageDownloader {
 
             final var image = Bitmap.createBitmap(mImage, mImage.getWidth()/4, 0, mImage.getWidth()/2, mImage.getHeight());
             handler.post(() -> callback.onComplete(image, 0));
-
         });
     }
 }

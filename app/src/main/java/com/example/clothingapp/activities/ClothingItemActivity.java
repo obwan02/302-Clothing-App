@@ -18,6 +18,7 @@ import com.example.clothingapp.R;
 import com.example.clothingapp.adapters.ClothingItemImageAdapter;
 import com.example.clothingapp.data.ClothesSize;
 import com.example.clothingapp.data.ClothingItem;
+import com.example.clothingapp.data.Gender;
 
 import org.w3c.dom.Text;
 
@@ -63,7 +64,8 @@ public class ClothingItemActivity extends AppCompatActivity {
                                     ClothesSize.MEDIUM,
                                     List.of(),
                           "No clothing item passed to activity",
-                            "NULL");
+                            "NULL",
+                                     Gender.MALE);
             // Warn if no provider is sent
             Log.w(getPackageName(), "No ClothingItem passed to ClothingItemActivity");
         }

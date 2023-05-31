@@ -14,14 +14,17 @@ public class ClothingItem implements Serializable {
     // NOTE(spec): Change from original spec here
     private String category;
 
+    private Gender gender;
 
-    public ClothingItem(String name, float price, ClothesSize size, List<String> imageUrls, String description, String category) {
+
+    public ClothingItem(String name, float price, ClothesSize size, List<String> imageUrls, String description, String category, Gender gender) {
         this.name = name;
         this.price = price;
         this.size = size;
         this.imageUrls = imageUrls;
         this.description = description;
         this.category = category;
+        this.gender = gender;
     }
 
     public String getName() {
@@ -70,4 +73,8 @@ public class ClothingItem implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public Gender getGender() { return gender; }
+
+    public void setGender(Gender gender) { this.gender = gender; }
 }
