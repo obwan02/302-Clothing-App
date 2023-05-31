@@ -174,13 +174,15 @@
         android:layout_weight="1"
         />
 
-    <com.google.android.material.button.MaterialButton
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_gravity="right"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
         android:layout_margin="10dp"
-        android:text="CHECKOUT" />
+        android:text="CHECKOUT"
+        app:icon="@drawable/ic_checkout"/>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

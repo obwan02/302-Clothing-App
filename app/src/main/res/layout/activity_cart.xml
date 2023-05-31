@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.CartActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/TopText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="?android:attr/fontFamily"
+        android:gravity="center_horizontal"
+        android:text="@string/app_name"
+        android:textAllCaps="true"/>
+
+    <TextView
+        android:id="@+id/cart_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CART"
+        android:textSize="40sp"
+        android:gravity="center"
+        tools:layout_editor_absoluteY="93dp" />
+
+    <TextView
+        android:id="@+id/cart_total_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TOTAL: $XYZ"
+        android:textSize="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginVertical="40dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="CHECKOUT"
+            app:icon="@drawable/ic_checkout" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
+
+
+
