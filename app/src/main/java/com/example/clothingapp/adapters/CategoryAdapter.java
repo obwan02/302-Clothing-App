@@ -18,6 +18,8 @@ import com.example.clothingapp.data.IProvider;
 import com.example.clothingapp.data.ImageDownloader;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
 
+import org.w3c.dom.Text;
+
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
     private IProvider<Category> categoryProvider;
@@ -54,8 +56,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Category item = categoryProvider.getItem(position);
 
+        holder.image.setVisibility(View.INVISIBLE);
+        holder.loading.setVisibility(View.VISIBLE);
         downloader.loadSingle(item.getItems().getItem(0).getImageUrls().get(0), (bm, i) -> {
             holder.image.setImageBitmap(bm);
+            holder.image.setVisibility(View.VISIBLE);
+            holder.loading.setVisibility(View.INVISIBLE);
         });
 
         holder.text.setText(item.getName());
@@ -74,11 +80,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         public final ImageView image;
         public final TextView text;
+        public final TextView loading;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.category_card_image);
             text = itemView.findViewById(R.id.category_card_text);
+            loading = itemView.findViewById(R.id.category_card_loading);
         }
     }
 }

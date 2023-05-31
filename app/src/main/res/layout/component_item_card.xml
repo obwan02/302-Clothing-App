@@ -38,15 +38,30 @@
                 android:tag="@string/card_list_adapter_price_tag"
                 />
 
-            <ImageView
+            <RelativeLayout
                 android:layout_width="@dimen/category_card_height"
                 android:layout_height="@dimen/category_card_height"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/sherpa_jacket_brown"
                 android:layout_alignParentEnd="true"
-                android:tag="@string/card_list_adapter_image_tag"
-                />
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LOADING ..."
+                    android:textSize="10sp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:elevation="1dp"
+                    android:tag="@string/card_list_adapter_loading_tag"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/sherpa_jacket_brown"
+                    android:visibility="invisible"
+                    android:tag="@string/card_list_adapter_image_tag"
+                    />
+            </RelativeLayout>
 
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>

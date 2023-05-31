@@ -69,8 +69,12 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
         ClothingItem item = itemProvider.getItem(position);
 
+        holder.image.setVisibility(View.INVISIBLE);
+        holder.loading.ifPresent(x -> x.setVisibility(View.VISIBLE));
         downloader.loadSingle(itemProvider.getItem(position).getImageUrls().get(0), (bm, i) -> {
             holder.image.setImageBitmap(bm);
+            holder.image.setVisibility(View.VISIBLE);
+            holder.loading.ifPresent(x -> x.setVisibility(View.INVISIBLE));
         });
 
         holder.name.setText(item.getName());
@@ -91,6 +95,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
         public final ImageView image;
         public final TextView name;
         public final Optional<TextView> price;
+        public final Optional<TextView> loading;
 
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -99,10 +104,12 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.CardVi
             String imageTag = resources.getString(R.string.card_list_adapter_image_tag);
             String nameTag = resources.getString(R.string.card_list_adapter_name_tag);
             String priceTag = resources.getString(R.string.card_list_adapter_price_tag);
+            String loadingTag = resources.getString(R.string.card_list_adapter_loading_tag);
 
             image = itemView.findViewWithTag(imageTag);
             name = itemView.findViewWithTag(nameTag);
             price = Optional.ofNullable(itemView.findViewWithTag(priceTag));
+            loading = Optional.ofNullable(itemView.findViewWithTag(loadingTag));
 
             if(image == null) {
                 throw new RuntimeException("Could not find view with '@string/card_list_adapter_image_tag' in provided layout");

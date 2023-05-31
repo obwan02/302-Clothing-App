@@ -67,6 +67,7 @@
     <string name="card_list_adapter_name_tag">card_list_adapter_name_tag</string>
     <string name="card_list_adapter_price_tag">card_list_adapter_price_tag</string>
     <string name="card_list_adapter_image_tag">card_list_adapter_image_tag</string>
+    <string name="card_list_adapter_loading_tag">card_list_adapter_loading_tag</string>
 
 
 </resources>

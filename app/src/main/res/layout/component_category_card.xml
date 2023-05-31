@@ -27,16 +27,32 @@
                 android:textAllCaps="true"
                 />
 
-            <ImageView
-                android:id="@+id/category_card_image"
+            <RelativeLayout
                 android:layout_width="@dimen/category_card_height"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:text="PLACEHOLDER"
+                android:layout_height="@dimen/category_card_height"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/sherpa_jacket_brown"
-                />
+                >
+                <TextView
+                    android:id="@+id/category_card_loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LOADING ..."
+                    android:textSize="10sp"
+                    android:elevation="1dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    />
+                <ImageView
+                    android:id="@+id/category_card_image"
+                    android:layout_width="@dimen/category_card_height"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:text="PLACEHOLDER"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/sherpa_jacket_brown"
+                    />
+            </RelativeLayout>
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
