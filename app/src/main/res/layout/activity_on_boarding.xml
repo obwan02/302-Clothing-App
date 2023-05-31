@@ -49,7 +49,7 @@
             android:layout_alignParentBottom="true"
             android:padding="30dp"
             android:background="#00000000"
-            android:drawableEnd="@drawable/next_btn"/>
+            android:drawableEnd="@drawable/ic_nextbtn"/>
 
     </RelativeLayout>
 </RelativeLayout>
