@@ -92,13 +92,14 @@
     </LinearLayout>
 
     <TextView
-    android:id="@+id/clothing_item_title"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginHorizontal="@+id/clothing_item_price"
-    android:text="Brown Sherpa Jacket"
-    android:textSize="20sp" />
+        android:id="@+id/clothing_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginHorizontal="@+id/clothing_item_price"
+        android:text="Brown Sherpa Jacket"
+        android:textAllCaps="true"
+        android:textSize="20sp" />
 
     <ScrollView
         android:layout_width="match_parent"
