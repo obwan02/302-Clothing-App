@@ -88,21 +88,22 @@
         android:textSize="20sp"
         android:layout_marginStart="10dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:text="The highly anticipated release is here; Introducing the Harrison Sherpa Jacket in Brown.
-        \nCreated to provide a winter staple with an outdoor aesthetic that doesn't compromise style or sophistication.
-        \nConstructed from high quality sherpa outing with a mesh lining for both warmth and breathability."
-        />
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        />
+        >
+        <TextView
+            android:id="@+id/clothing_item_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="The highly anticipated release is here; Introducing the Harrison Sherpa Jacket in Brown.
+            \nCreated to provide a winter staple with an outdoor aesthetic that doesn't compromise style or sophistication.
+            \nConstructed from high quality sherpa outing with a mesh lining for both warmth and breathability."
+            />
+    </ScrollView>
 
     <LinearLayout
 

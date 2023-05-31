@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -18,6 +19,8 @@ import com.example.clothingapp.adapters.ClothingItemImageAdapter;
 import com.example.clothingapp.data.ClothesSize;
 import com.example.clothingapp.data.ClothingItem;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class ClothingItemActivity extends AppCompatActivity {
@@ -28,12 +31,14 @@ public class ClothingItemActivity extends AppCompatActivity {
         private final ViewPager2 images;
         private final TextView price;
         private final TextView title;
+        private final TextView description;
         private final LinearLayout dotsLayout;
 
         public ViewHolder(Activity activity) {
             this.images = activity.findViewById(R.id.clothing_item_pager);
             this.price = activity.findViewById(R.id.clothing_item_price);
             this.title = activity.findViewById(R.id.clothing_item_title);
+            this.description = activity.findViewById(R.id.clothing_item_description);
 
             this.dotsLayout = activity.findViewById(R.id.clothing_item_dots_layout);
             this.dotsLayout.removeAllViews();
@@ -65,6 +70,7 @@ public class ClothingItemActivity extends AppCompatActivity {
 
         vh.title.setText(item.getName());
         vh.price.setText(String.format("$ %.2f", item.getPrice()));
+        vh.description.setText(Html.fromHtml(item.getDescription().replaceAll("\n", "\n \n"), Html.FROM_HTML_MODE_COMPACT));
         vh.images.setAdapter(new ClothingItemImageAdapter(this, item));
         initDots(item);
         vh.images.registerOnPageChangeCallback(new ImageChangedCallback());
@@ -77,16 +83,6 @@ public class ClothingItemActivity extends AppCompatActivity {
 
         for(var ignored : imageResourceIds) {
             vh.dotsLayout.addView(createDot());
-        }
-    }
-
-    private void updateDots(ClothingItem item) {
-        vh.dotsLayout.removeAllViews();
-
-        var imageResourceIds = item.getImageUrls();
-
-        for(int i = 0; i < imageResourceIds.size(); i++) {
-            vh.dotsLayout.addView(createDot(), i);
         }
     }
 
