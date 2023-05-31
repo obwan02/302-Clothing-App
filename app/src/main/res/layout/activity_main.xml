@@ -6,6 +6,7 @@
     android:orientation="vertical"
     tools:context=".activities.MainActivity"
     android:gravity="top">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,18 +15,35 @@
         android:fontFamily="?android:attr/fontFamily"
         android:gravity="center_horizontal"
         />
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/main_search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/colorBackgroundFloating"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TRENDING"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_trending"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
         android:orientation="horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CATEGORIES"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_categories"
         android:layout_width="match_parent"
