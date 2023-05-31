@@ -22,6 +22,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.slider.RangeSlider;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,12 +39,15 @@ public class FilterBottomSheet extends BottomSheetDialogFragment {
         public final ChipGroup genderSelection;
         public final Chip femaleChip, maleChip;
         public final LinearLayout checkBoxesLayout;
+        public final RangeSlider priceSlider;
 
         ViewHolder(View view) {
             genderSelection = view.findViewById(R.id.filter_gender_group);
             femaleChip = view.findViewById(R.id.filter_chip_female);
             maleChip = view.findViewById(R.id.filter_chip_male);
             checkBoxesLayout = view.findViewById(R.id.filter_checkbox_layout);
+            priceSlider = view.findViewById(R.id.filter_price_slider);
+            priceSlider.setValues(0.1f, 0.9f);
         }
     }
 

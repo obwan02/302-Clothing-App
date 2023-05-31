@@ -29,6 +29,7 @@ import com.example.clothingapp.fragments.SortBottomSheet;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.slider.RangeSlider;
 
 import java.io.Serializable;
 import java.util.function.Predicate;
@@ -47,6 +48,7 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
         public final Button filterButton, sortButton;
         public final FilterBottomSheet filterBottomSheet;
         public final SortBottomSheet sortBottomSheet;
+
         public ViewHolder(Activity activity) {
             items = activity.findViewById(R.id.list_items);
             filterButton = activity.findViewById(R.id.list_filter_button);
