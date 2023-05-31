@@ -32,6 +32,7 @@
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/sherpa_jacket_brown" />
+
         <LinearLayout
             android:id="@+id/clothing_item_dots_layout"
             android:layout_width="wrap_content"
@@ -39,6 +40,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignBottom="@id/clothing_item_pager"
             android:layout_marginBottom="10dp">
+
             <TextView
                 android:id="@+id/clothing_item_dot_selected"
                 android:layout_width="wrap_content"
@@ -58,9 +60,8 @@
                 android:layout_gravity="center_vertical"
                 />
         </LinearLayout>
+
     </RelativeLayout>
-
-
 
     <com.google.android.material.button.MaterialButton
         style="@style/Widget.Material3.Button.IconButton"
@@ -86,12 +87,21 @@
         android:textSize="20sp"
         android:layout_marginStart="10dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:text="The highly anticipated release is here; Introducing the Harrison Sherpa Jacket in Brown.
+        \nCreated to provide a winter staple with an outdoor aesthetic that doesn't compromise style or sophistication.
+        \nConstructed from high quality sherpa outing with a mesh lining for both warmth and breathability."
+        />
+
     <Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         />
-
 
     <LinearLayout
 
@@ -114,7 +124,6 @@
             android:text="SAVE"
             android:layout_margin="10dp" />
 
-
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.Material3.Button"
             android:layout_width="wrap_content"
@@ -125,15 +134,11 @@
 
     </LinearLayout>
 
-
     <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fragment_container_view"
         android:name="com.example.clothingapp.fragments.NavigationBar"
         />
-
-
-
 
 </LinearLayout>
