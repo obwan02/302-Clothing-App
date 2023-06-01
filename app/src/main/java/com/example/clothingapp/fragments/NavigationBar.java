@@ -36,9 +36,6 @@ public class NavigationBar extends Fragment implements NavigationBarView.OnItemS
         bottomNav.setSelectedItemId(highlightId);
         bottomNav.setOnItemSelectedListener(this);
 
-
-
-
         return view;
     }
 
