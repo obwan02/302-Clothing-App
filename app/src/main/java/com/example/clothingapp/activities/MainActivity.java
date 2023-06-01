@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 
 import com.example.clothingapp.R;
 import com.example.clothingapp.adapters.CategoryAdapter;
@@ -50,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        getWindow().setExitTransition(new android.transition.Fade());
         setContentView(R.layout.activity_main);
 
         vh = new ViewHolder(this);
@@ -89,14 +94,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private void onCategoryClicked(Category cat, View itemView, int position) {
         var intent = new Intent(this, ListActivity.class);
         intent.putExtra(ListActivity.INTENT_CATEGORY_FILTER, cat.getName());
-        startActivity(intent);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
         var intent = new Intent(this, ListActivity.class);
         intent.putExtra(ListActivity.INTENT_SEARCH_FILTER, vh.searchBar.getQuery().toString());
-        startActivity(intent);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         return true;
     }
 

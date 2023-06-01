@@ -134,6 +134,7 @@
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.Material3.Button.OutlinedButton"
+            android:id="@+id/clothing_item_save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
@@ -142,6 +143,7 @@
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.Material3.Button"
+            android:id="@+id/clothing_item_cart_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"

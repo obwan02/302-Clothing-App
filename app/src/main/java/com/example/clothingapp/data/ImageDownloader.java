@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 
 public class ImageDownloader {
 
-    private static LruCache<String, Bitmap> imageCache = new LruCache<>(150);
+    private static LruCache<String, Bitmap> imageCache = new LruCache<>(300);
 
     public interface Callback {
         void onComplete(Bitmap result, int index);

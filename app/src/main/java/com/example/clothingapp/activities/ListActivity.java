@@ -3,6 +3,7 @@ package com.example.clothingapp.activities;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Toast;
@@ -66,6 +68,10 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Setup transitions
+        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+        getWindow().setEnterTransition(new android.transition.Slide());
         setContentView(R.layout.activity_list);
 
         vh = new ViewHolder(this);
@@ -84,7 +90,7 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
         vh.searchView.setOnQueryTextListener(this);
         String search = getIntent().getStringExtra(INTENT_SEARCH_FILTER);
         if(search != null) {
-            vh.searchView.setQuery(search, false);
+            vh.searchView.setQuery(search, true);
         }
 
         // Filtering
@@ -108,7 +114,13 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
         var intent = new Intent(this, ClothingItemActivity.class);
         intent.putExtra(ClothingItemActivity.INTENT_CLOTHING_ITEM_KEY, item);
 
-        startActivity(intent);
+        var transition = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(
+                        this,
+                        itemView.findViewWithTag(getResources().getString(R.string.card_list_adapter_image_tag)),
+                        ClothingItemActivity.TRANSITION_SHARED_IMAGE_NAME);
+
+        startActivity(intent, transition.toBundle());
     }
 
     private void onFilterButtonClicked(View v) {

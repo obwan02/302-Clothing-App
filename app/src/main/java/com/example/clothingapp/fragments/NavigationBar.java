@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.app.ActivityOptions;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,19 +47,16 @@ public class NavigationBar extends Fragment implements NavigationBarView.OnItemS
 
         Intent intent = new Intent(this.getContext(), MainActivity.class);
         intent.putExtra("nav_id", item.getItemId());
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         if(item.getItemId() == R.id.menu_nav_home) {
             intent.setClass(this.getContext(), MainActivity.class);
-            startActivity(intent);
         } else if(item.getItemId() == R.id.menu_nav_saved) {
             intent.setClass(this.getContext(), SavedActivity.class);
-            startActivity(intent);
         } else if(item.getItemId() == R.id.menu_nav_cart) {
             intent.setClass(this.getContext(), CartActivity.class);
-            startActivity(intent);
         }
 
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
         return true;
     }
 }

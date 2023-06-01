@@ -10,6 +10,8 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
@@ -19,6 +21,8 @@ import com.example.clothingapp.adapters.ClothingItemImageAdapter;
 import com.example.clothingapp.data.ClothesSize;
 import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.Gender;
+import com.example.clothingapp.util.CartManager;
+import com.example.clothingapp.util.SavedManager;
 
 import org.w3c.dom.Text;
 
@@ -35,12 +39,16 @@ public class ClothingItemActivity extends AppCompatActivity {
         private final TextView title;
         private final TextView description;
         private final LinearLayout dotsLayout;
+        private final Button saveButton, addToCartButton;
 
         public ViewHolder(Activity activity) {
             this.images = activity.findViewById(R.id.clothing_item_pager);
             this.price = activity.findViewById(R.id.clothing_item_price);
             this.title = activity.findViewById(R.id.clothing_item_title);
             this.description = activity.findViewById(R.id.clothing_item_description);
+            this.saveButton = activity.findViewById(R.id.clothing_item_save_button);
+            this.addToCartButton = activity.findViewById(R.id.clothing_item_cart_button);
+
 
             this.dotsLayout = activity.findViewById(R.id.clothing_item_dots_layout);
             this.dotsLayout.removeAllViews();
@@ -48,6 +56,7 @@ public class ClothingItemActivity extends AppCompatActivity {
     }
 
     private ViewHolder vh;
+    private ClothingItem item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +66,7 @@ public class ClothingItemActivity extends AppCompatActivity {
         vh = new ViewHolder(this);
 
         var intent = getIntent();
-        var item = (ClothingItem) intent.getSerializableExtra(INTENT_CLOTHING_ITEM_KEY);
+        item = (ClothingItem) intent.getSerializableExtra(INTENT_CLOTHING_ITEM_KEY);
 
         if(item == null) {
             item = new ClothingItem("NOTHING",
@@ -77,7 +86,20 @@ public class ClothingItemActivity extends AppCompatActivity {
         vh.images.setAdapter(new ClothingItemImageAdapter(this, item));
         initDots(item);
         vh.images.registerOnPageChangeCallback(new ImageChangedCallback());
+
+        // Button callbacks
+        vh.saveButton.setOnClickListener(v -> this.onSaveClicked(v));
+        vh.addToCartButton.setOnClickListener(v -> this.onCartClicked(v));
     }
+
+    private void onSaveClicked(View v) {
+        SavedManager.addToSaved(item);
+    }
+
+    private void onCartClicked(View v) {
+        CartManager.addToCart(item);
+    }
+
 
     private void initDots(ClothingItem item) {
         vh.dotsLayout.removeAllViews();
