@@ -17,16 +17,55 @@
         android:textAllCaps="true"/>
 
     <TextView
-        android:id="@+id/checkout_checkout"
+        android:id="@+id/thankyou_thankyou"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/TopText"
         android:layout_centerInParent="true"
+        android:layout_marginStart="@+id/TopText"
+        android:layout_marginTop="@+id/TopText"
+        android:layout_marginEnd="@+id/TopText"
+        android:layout_marginBottom="@+id/TopText"
         android:fontFamily="monospace"
         android:gravity="center_horizontal"
-
+        android:paddingTop="100sp"
         android:text="THANK YOU\nFOR\nSHOPPING AT\nI HATE UGLY"
         android:textSize="60sp"
         tools:layout_editor_absoluteY="93dp" />
+
+    <TextView
+        android:id="@+id/thankyou_return"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/thankyou_thankyou"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:paddingLeft="10sp"
+        android:paddingTop="100sp"
+        android:paddingRight="10sp"
+        android:text="WE KEEP YOUR CREDIT CARD DETAILS\n AND DON'T ENCRYPT THEM"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/thankyou_refund"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/thankyou_thankyou"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:paddingLeft="10sp"
+        android:paddingTop="300dp"
+        android:paddingRight="10sp"
+        android:text="NO REFUNDS"
+        android:textSize="10sp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
