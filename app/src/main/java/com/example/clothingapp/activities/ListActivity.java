@@ -91,6 +91,7 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
         String search = getIntent().getStringExtra(INTENT_SEARCH_FILTER);
         if(search != null) {
             vh.searchView.setQuery(search, true);
+            vh.searchView.setQueryHint(search);
         }
 
         // Filtering
