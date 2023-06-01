@@ -2,6 +2,7 @@ package com.example.clothingapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         allItems = new JSONClothingProvider(this);
 
         // TODO: change this
-        IProvider<ClothingItem> trendingItems = allItems;
+        IProvider<ClothingItem> trendingItems = allItems.slice(0, 5);
         IProvider<Category> categories = new GenerativeCategoryProvider(allItems);
 
         var trendingAdapter = new CardListAdapter(this, trendingItems, R.layout.component_trending_card);
@@ -75,7 +76,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private void onTrendingItemClicked(ClothingItem item, View itemView, int position) {
         var intent = new Intent(this, ClothingItemActivity.class);
         intent.putExtra(ClothingItemActivity.INTENT_CLOTHING_ITEM_KEY, item);
-        startActivity(intent);
+
+        // Animation
+        var transition = ActivityOptionsCompat
+                                            .makeSceneTransitionAnimation(
+                                                    this,
+                                                    itemView.findViewById(R.id.trending_card_image),
+                                                    ClothingItemActivity.TRANSITION_SHARED_IMAGE_NAME);
+        startActivity(intent, transition.toBundle());
     }
 
     private void onCategoryClicked(Category cat, View itemView, int position) {

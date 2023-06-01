@@ -71,6 +71,22 @@ public interface IProvider<T> extends Serializable {
         };
     }
 
+    default IProvider<T> slice(int startIndex, int endIndex) {
+        // TODO: Error checking
+
+        return new IProvider<T>() {
+            @Override
+            public int getCount() {
+                return endIndex - startIndex;
+            }
+
+            @Override
+            public T getItem(int index) {
+                return IProvider.this.getItem(index - startIndex);
+            }
+        };
+    }
+
     static <Y> List<Y> toList(IProvider<Y> provider) {
         var list = new ArrayList<Y>(provider.getCount());
         for (int i = 0; i < provider.getCount(); i++) {

@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.util.LruCache;
 import android.widget.ImageView;
 
 import java.io.InputStream;
@@ -15,6 +16,8 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class ImageDownloader {
+
+    private static LruCache<String, Bitmap> imageCache = new LruCache<>(150);
 
     public interface Callback {
         void onComplete(Bitmap result, int index);
@@ -36,25 +39,23 @@ public class ImageDownloader {
             final String url = urls.get(i);
             final int index = i;
 
-            executor.execute(() -> {
-                Bitmap mImage = null;
-                try {
-                    InputStream in = new java.net.URL(url).openStream();
-                    mImage = BitmapFactory.decodeStream(in);
-                } catch (Exception e) {
-                    Log.e("Error", e.getMessage());
-                    e.printStackTrace();
-                }
-
-                final var image = Bitmap.createBitmap(mImage, mImage.getWidth()/4, 0, mImage.getWidth()/2, mImage.getHeight());
-                handler.post(() -> callback.onComplete(image, index));
-
-            });
+            loadSingleInternal(url, index, callback);
         }
     }
 
     public void loadSingle(String url, Callback callback) {
+        loadSingleInternal(url, 0, callback);
+    }
+
+    private void loadSingleInternal(String url, int index, Callback callback) {
         executor.execute(() -> {
+
+            // Check cache
+            Bitmap cached = imageCache.get(url);
+            if(cached != null) {
+                handler.post(() -> callback.onComplete(cached, index));
+            }
+
             Bitmap mImage = null;
             try {
                 InputStream in = new java.net.URL(url).openStream();
@@ -65,7 +66,8 @@ public class ImageDownloader {
             }
 
             final var image = Bitmap.createBitmap(mImage, mImage.getWidth()/4, 0, mImage.getWidth()/2, mImage.getHeight());
-            handler.post(() -> callback.onComplete(image, 0));
+            imageCache.put(url, image);
+            handler.post(() -> callback.onComplete(image, index));
         });
     }
 }

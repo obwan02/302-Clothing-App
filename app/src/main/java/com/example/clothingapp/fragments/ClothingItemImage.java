@@ -18,15 +18,24 @@ public class ClothingItemImage extends Fragment {
 
     public static final String BUNDLE_IMAGE_URL_KEY = "clothing_item_url";
     private ImageDownloader downloader;
+    private String sharedTransitionInName;
 
     public void setDownloader(ImageDownloader downloader) {
         this.downloader = downloader;
     }
 
+    public void setSharedItemTransitionName(String name) {
+        sharedTransitionInName = name;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.frag_clothing_item_image, container, false);
+        View v = inflater.inflate(R.layout.frag_clothing_item_image, container, false);
+        if(sharedTransitionInName != null) {
+            v.findViewById(R.id.clothing_item_image).setTransitionName(sharedTransitionInName);
+        }
+        return v;
     }
 
     @Override

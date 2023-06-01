@@ -27,6 +27,7 @@ import java.util.List;
 public class ClothingItemActivity extends AppCompatActivity {
 
     public static final String INTENT_CLOTHING_ITEM_KEY = "clothingItem";
+    public static final String TRANSITION_SHARED_IMAGE_NAME = "clothingItemImage";
 
     private static class ViewHolder {
         private final ViewPager2 images;

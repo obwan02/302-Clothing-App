@@ -35,12 +35,14 @@ public class ClothingItemImageAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         ClothingItemImage fragment = new ClothingItemImage();
         fragment.setDownloader(downloader);
+        if(position == 0) {
+            fragment.setSharedItemTransitionName("clto");
+        }
 
         Bundle args = new Bundle();
-
         args.putString(ClothingItemImage.BUNDLE_IMAGE_URL_KEY, clothingItem.getImageUrls().get(position));
-
         fragment.setArguments(args);
+
         return fragment;
     }
 
