@@ -27,49 +27,16 @@
                 android:textSize="40sp"
                 android:textAllCaps="true"/>
 
-            <RelativeLayout
+            <androidx.viewpager2.widget.ViewPager2
+                android:transitionName="clothingItemImage"
+                android:id="@+id/clothing_item_pager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:transitionName="clothingItemImage"
-                    android:id="@+id/clothing_item_pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/clothing_image_height"
-                    android:padding="24dp"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    />
-
-                <LinearLayout
-                    android:id="@+id/clothing_item_dots_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="2dp">
-
-                    <TextView
-                        android:id="@+id/clothing_item_dot_selected"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="&#8226;"
-                        android:layout_marginHorizontal="2dp"
-                        android:textSize="20sp"
-                        android:layout_gravity="center_vertical"
-                        />
-
-                    <TextView
-                        android:id="@+id/clothing_item_dot"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="&#8226;"
-                        android:layout_marginHorizontal="2dp"
-                        android:gravity="center_vertical"
-                        android:layout_gravity="center_vertical"
-                        />
-                </LinearLayout>
-            </RelativeLayout>
+                android:layout_height="@dimen/clothing_image_height"
+                android:paddingHorizontal="16dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:layout_marginBottom="16dp"
+                />
 
             <LinearLayout
                 android:id="@+id/clothing_item_price_layout"
@@ -82,6 +49,7 @@
                     android:id="@+id/clothing_item_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:text="$ 99.99"
                     android:textSize="20sp"/>
 
@@ -94,7 +62,21 @@
                     style="@style/Widget.Material3.Button.IconButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:icon="@drawable/ic_share"/>
+                    android:layout_gravity="center_vertical"
+                    app:icon="@drawable/ic_share" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/clothing_item_save_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:layout_gravity="center_vertical"
+                    app:chipIcon="@drawable/ic_saved"
+                    app:chipBackgroundColor="?android:attr/colorBackground"
+                    android:buttonTint="?attr/colorPrimary"
+                    app:chipStrokeWidth="0dp"
+                    android:text="SAVE"
+                    android:checkable="true"/>
             </LinearLayout>
 
             <TextView
@@ -105,6 +87,12 @@
                 android:text="Brown Sherpa Jacket"
                 android:textAllCaps="true"
                 android:textSize="20sp"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="16dp"/>
 
             <TextView
                 android:id="@+id/clothing_item_description"
@@ -118,6 +106,37 @@
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/clothing_item_dots_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        app:layout_anchor="@id/clothing_item_pager"
+        app:layout_anchorGravity="center_horizontal|bottom"
+        android:baselineAligned="false">
+
+        <TextView
+            android:id="@+id/clothing_item_dot_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="&#8226;"
+            android:layout_marginHorizontal="2dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            />
+
+        <TextView
+            android:id="@+id/clothing_item_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="&#8226;"
+            android:layout_marginHorizontal="2dp"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            />
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/clothing_item_cart_button"

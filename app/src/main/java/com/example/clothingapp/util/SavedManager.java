@@ -4,6 +4,7 @@ import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.IProvider;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class SavedManager implements IProvider<ClothingItem> {
 
@@ -27,14 +28,24 @@ public class SavedManager implements IProvider<ClothingItem> {
     }
 
     public static void addToSaved(ClothingItem item) {
-        // Don't add if it already exists
-        for(var x : getInstance().saved) {
-            if(x.getName().equalsIgnoreCase(item.getName())) {
-                return;
-            }
+        if(!isSaved(item)) {
+            getInstance().saved.add(item);
         }
-
-        getInstance().saved.add(item);
     }
 
+    public static boolean removeFromSaved(ClothingItem item) {
+        return getInstance().saved.remove(item);
+    }
+
+    public static void toggleSaved(ClothingItem item) {
+        if(isSaved(item)) {
+            removeFromSaved(item);
+        } else {
+            addToSaved(item);
+        }
+    }
+
+    public static boolean isSaved(ClothingItem item) {
+        return getInstance().saved.stream().anyMatch(x -> x.getName().equalsIgnoreCase(item.getName()));
+    }
 }

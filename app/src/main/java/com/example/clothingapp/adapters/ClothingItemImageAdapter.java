@@ -2,11 +2,14 @@ package com.example.clothingapp.adapters;
 
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.adapter.FragmentViewHolder;
 
 import com.example.clothingapp.R;
 import com.example.clothingapp.activities.ClothingItemActivity;

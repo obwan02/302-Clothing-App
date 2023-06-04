@@ -1,6 +1,7 @@
 package com.example.clothingapp.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,17 @@ import com.example.clothingapp.R;
 import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.ImageDownloader;
 import com.example.clothingapp.util.SavedManager;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.chip.Chip;
+
+import java.util.function.Consumer;
 
 public class ClothingItemImage extends Fragment {
 
     public static final String BUNDLE_IMAGE_URL_KEY = "clothing_item_url";
     public static final String BUNDLE_ITEM_KEY = "clothing_item";
+
+
     private ImageDownloader downloader;
     private String sharedTransitionInName;
 
@@ -52,7 +59,6 @@ public class ClothingItemImage extends Fragment {
 
         ImageView imageView = view.findViewById(R.id.clothing_item_image);
         TextView loadingText = view.findViewById(R.id.clothing_item_loading_text);
-        Button saveButton = view.findViewById(R.id.clothing_item_save_button);
 
         if(downloader == null) {
             downloader = new ImageDownloader(true);
@@ -65,10 +71,6 @@ public class ClothingItemImage extends Fragment {
         });
 
         final ClothingItem item = (ClothingItem) args.getSerializable(BUNDLE_ITEM_KEY);
-        saveButton.setOnClickListener(x -> this.onSaveButtonClicked(x, item));
     }
 
-    private void onSaveButtonClicked(View v, ClothingItem item) {
-        SavedManager.addToSaved(item);
-    }
 }

@@ -15,6 +15,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -27,6 +28,7 @@ import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.Gender;
 import com.example.clothingapp.util.CartManager;
 import com.example.clothingapp.util.SavedManager;
+import com.google.android.material.chip.Chip;
 
 import org.w3c.dom.Text;
 
@@ -47,6 +49,7 @@ public class ClothingItemActivity extends AppCompatActivity {
         private final TextView description;
         private final LinearLayout dotsLayout, scrollLayout;
         private final ImageButton addToCartButton;
+        private final Chip saveChip;
 
         public ViewHolder(Activity activity) {
             this.images = activity.findViewById(R.id.clothing_item_pager);
@@ -54,6 +57,7 @@ public class ClothingItemActivity extends AppCompatActivity {
             this.title = activity.findViewById(R.id.clothing_item_title);
             this.description = activity.findViewById(R.id.clothing_item_description);
             this.addToCartButton = activity.findViewById(R.id.clothing_item_cart_button);
+            this.saveChip = activity.findViewById(R.id.clothing_item_save_button);
 
             this.scrollLayout = activity.findViewById(R.id.clothing_item_scroll_layout);
 
@@ -101,10 +105,18 @@ public class ClothingItemActivity extends AppCompatActivity {
 
         // Button callbacks
         vh.addToCartButton.setOnClickListener(v -> this.onCartClicked(v));
+
+        // Save button
+        vh.saveChip.setOnCheckedChangeListener((buttonView, isChecked) -> this.onSaveChecked(buttonView, isChecked));
+        vh.saveChip.setChecked(SavedManager.isSaved(item));
     }
 
-    private void onSaveClicked(View v) {
-        SavedManager.addToSaved(item);
+    private void onSaveChecked(CompoundButton button, boolean isChecked) {
+        if(isChecked) {
+            SavedManager.addToSaved(item);
+        } else {
+            SavedManager.removeFromSaved(item);
+        }
     }
 
     private void onCartClicked(View v) {
