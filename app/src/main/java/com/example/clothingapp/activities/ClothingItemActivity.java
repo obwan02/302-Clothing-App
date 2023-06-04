@@ -1,6 +1,7 @@
 package com.example.clothingapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Activity;
@@ -82,8 +83,11 @@ public class ClothingItemActivity extends AppCompatActivity {
 
         vh.title.setText(item.getName());
         vh.price.setText(String.format("$ %.2f", item.getPrice()));
-        vh.description.setText(Html.fromHtml(item.getDescription().replaceAll("\n", "\n \n"), Html.FROM_HTML_MODE_COMPACT));
+        vh.description.setText(Html.fromHtml(item.getDescription(), Html.FROM_HTML_SEPARATOR_LINE_BREAK_BLOCKQUOTE));
+
         vh.images.setAdapter(new ClothingItemImageAdapter(this, item));
+        var margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics());
+        vh.images.setPageTransformer(new MarginPageTransformer((int) margin));
         initDots(item);
         vh.images.registerOnPageChangeCallback(new ImageChangedCallback());
 

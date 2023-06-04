@@ -3,38 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:strokeColor="?attr/colorOnSurface"
-        app:cardBackgroundColor="?android:attr/colorBackground">
+        app:cardBackgroundColor="?android:attr/colorBackground"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="6dp"
+        app:strokeWidth="0dp"
+        app:cardElevation="2dp">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/item_card_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/item_card_loading_holder"
                 android:tag="@string/card_list_adapter_name_tag"
                 android:text="PLACEHOLDER NAME"
                 android:textAllCaps="true"
                 android:ellipsize="end"
+                android:lines="1"
                 android:textColor="?attr/colorOnSurface" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_card_name"
                 android:text="$999.99"
                 android:layout_below="@id/item_card_name"
                 android:textColor="?attr/colorOnSurface"
@@ -42,9 +49,12 @@
                 />
 
             <RelativeLayout
+                android:id="@+id/item_card_loading_holder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="@dimen/category_card_height"
                 android:layout_height="@dimen/category_card_height"
-                android:layout_alignParentEnd="true"
+                android:elevation="1dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
@@ -66,7 +76,7 @@
                     />
             </RelativeLayout>
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
 </FrameLayout>
