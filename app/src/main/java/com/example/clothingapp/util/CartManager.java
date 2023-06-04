@@ -26,7 +26,6 @@ public class CartManager implements IProvider<ClothingItem> {
     public static CartManager getInstance() {
         return instance;
     }
-
     public static float getTotal() {
         return getInstance().cart.stream()
                 .map(x -> x.getPrice())
@@ -36,4 +35,6 @@ public class CartManager implements IProvider<ClothingItem> {
     public static void addToCart(ClothingItem item) {
         instance.cart.add(item);
     }
+
+    public static void clear() { instance.cart.clear(); }
 }

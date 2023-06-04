@@ -34,7 +34,7 @@ public class SavedManager implements IProvider<ClothingItem> {
     }
 
     public static boolean removeFromSaved(ClothingItem item) {
-        return getInstance().saved.remove(item);
+        return getInstance().saved.removeIf(x -> x.getName().equalsIgnoreCase(item.getName()));
     }
 
     public static void toggleSaved(ClothingItem item) {

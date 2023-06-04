@@ -22,16 +22,19 @@
 
 
     <RadioGroup
+        android:id="@+id/sort_radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
         <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sort_radio_high_low"
             android:layout_marginStart="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="HIGHEST TO LOWEST"/>
 
         <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sort_radio_low_high"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -50,18 +53,22 @@
             />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
-            android:layout_marginStart="6dp"
+            android:id="@+id/sort_radio_hot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HOTTEST NEW ITEMS"/>
+            android:layout_marginStart="6dp"
+            android:checked="true"
+            android:text="HOTTEST NEW ITEMS" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sort_radio_always_selling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:text="ALWAYS SELLING"/>
 
         <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/sort_radio_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"

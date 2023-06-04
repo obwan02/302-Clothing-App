@@ -27,16 +27,53 @@
                 android:textSize="40sp"
                 android:textAllCaps="true"/>
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:transitionName="clothingItemImage"
-                android:id="@+id/clothing_item_pager"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/clothing_image_height"
-                android:paddingHorizontal="16dp"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:layout_marginBottom="16dp"
-                />
+                android:layout_height="wrap_content">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:transitionName="clothingItemImage"
+                    android:id="@+id/clothing_item_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/clothing_image_height"
+                    android:paddingHorizontal="16dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:layout_marginBottom="16dp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/clothing_item_dots_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:translationY="6dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:baselineAligned="false">
+
+                    <TextView
+                        android:id="@+id/clothing_item_dot_selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="&#8226;"
+                        android:layout_marginHorizontal="2dp"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        />
+
+                    <TextView
+                        android:id="@+id/clothing_item_dot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="&#8226;"
+                        android:layout_marginHorizontal="2dp"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+
 
             <LinearLayout
                 android:id="@+id/clothing_item_price_layout"
@@ -107,36 +144,6 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <LinearLayout
-        android:id="@+id/clothing_item_dots_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        app:layout_anchor="@id/clothing_item_pager"
-        app:layout_anchorGravity="center_horizontal|bottom"
-        android:baselineAligned="false">
-
-        <TextView
-            android:id="@+id/clothing_item_dot_selected"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="&#8226;"
-            android:layout_marginHorizontal="2dp"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:layout_gravity="center_vertical"
-            />
-
-        <TextView
-            android:id="@+id/clothing_item_dot"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="&#8226;"
-            android:layout_marginHorizontal="2dp"
-            android:gravity="center"
-            android:layout_gravity="center_vertical"
-            />
-    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/clothing_item_cart_button"

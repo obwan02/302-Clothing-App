@@ -17,11 +17,26 @@
         android:gravity="center"
         tools:layout_editor_absoluteY="93dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/saved_items"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/saved_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/saved_nothing_saved_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NOTHING SAVED!"
+            android:textSize="30sp"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
 
     <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"

@@ -9,14 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.Filter;
-import android.widget.Toast;
 
 import com.example.clothingapp.R;
 import com.example.clothingapp.adapters.CardListAdapter;
@@ -24,17 +20,10 @@ import com.example.clothingapp.data.ClothingItem;
 import com.example.clothingapp.data.Gender;
 import com.example.clothingapp.data.IProvider;
 import com.example.clothingapp.data.JSONClothingProvider;
-import com.example.clothingapp.data.NullProvider;
-import com.example.clothingapp.data.StaticClothingItemProvider;
 import com.example.clothingapp.fragments.FilterBottomSheet;
 import com.example.clothingapp.fragments.SortBottomSheet;
 import com.example.clothingapp.listeners.RecycleViewClickListener;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.slider.RangeSlider;
 
-import java.io.Serializable;
-import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 public class ListActivity extends AppCompatActivity implements RecycleViewClickListener<ClothingItem>, SearchView.OnQueryTextListener {
@@ -95,7 +84,17 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
         }
 
         // Filtering
-        vh.filterBottomSheet.setOnOptionChangedCallback(options -> setFilters(vh.searchView.getQuery().toString(), options));
+        vh.filterBottomSheet.setOnOptionChangedCallback(options ->
+                setFiltersAndProviders(vh.searchView.getQuery().toString(),
+                                       options,
+                                       vh.sortBottomSheet.getSortOptions()));
+
+        // Sorting
+        vh.sortBottomSheet.setOnOptionChangedCallback(options ->
+                setFiltersAndProviders(vh.searchView.getQuery().toString(),
+                                       vh.filterBottomSheet.getFilterOptions(),
+                                       options));
+
         initProviders();
     }
 
@@ -108,7 +107,9 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
         }
         provider = allItems;
 
-        setFilters(vh.searchView.getQuery().toString(), vh.filterBottomSheet.getFilterOptions());
+        setFiltersAndProviders(vh.searchView.getQuery().toString(),
+                               vh.filterBottomSheet.getFilterOptions(),
+                               vh.sortBottomSheet.getSortOptions());
     }
     @Override
     public void onItemClick(ClothingItem item, View itemView, int position) {
@@ -143,11 +144,13 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        setFilters(newText, vh.filterBottomSheet.getFilterOptions());
+        setFiltersAndProviders(newText, vh.filterBottomSheet.getFilterOptions(), vh.sortBottomSheet.getSortOptions());
         return true;
     }
 
-    private void setFilters(@Nullable String search, @Nullable FilterBottomSheet.FilterOptions filterOptions) {
+    private void setFiltersAndProviders(@Nullable String search,
+                                        @Nullable FilterBottomSheet.FilterOptions filterOptions,
+                                        @Nullable SortBottomSheet.SortOptions sortOptions) {
         final Pattern regex;
         if(search != null) {
             regex = Pattern.compile(search, Pattern.CASE_INSENSITIVE);
@@ -172,8 +175,14 @@ public class ListActivity extends AppCompatActivity implements RecycleViewClickL
             return result;
         });
 
+        // Sort
+        if(sortOptions != null) {
+            provider = provider.sort(sortOptions.getComparator());
+        }
+
         var adapter = (CardListAdapter) vh.items.getAdapter();
         adapter.setProvider(provider);
+
         adapter.notifyDataSetChanged();
     }
 }

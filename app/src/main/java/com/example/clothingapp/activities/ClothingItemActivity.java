@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.clothingapp.R;
 import com.example.clothingapp.adapters.ClothingItemImageAdapter;
@@ -120,6 +121,7 @@ public class ClothingItemActivity extends AppCompatActivity {
     }
 
     private void onCartClicked(View v) {
+        Toast.makeText(this, "Added item to cart", Toast.LENGTH_SHORT).show();
         CartManager.addToCart(item);
     }
 
