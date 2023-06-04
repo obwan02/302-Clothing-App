@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <ScrollView
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start">
 
         <LinearLayout
+            android:id="@+id/clothing_item_scroll_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/TopText"
-                android:layout_width="match_parent"
+                android:id="@+id/top_text"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="monospace"
-                android:gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:text="@string/app_name"
-                android:textSize="40dp"
-                android:textAllCaps="true" />
+                android:textSize="40sp"
+                android:textAllCaps="true"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="4">
+                android:layout_height="wrap_content">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:transitionName="clothingItemImage"
                     android:id="@+id/clothing_item_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/clothing_image_height"
                     android:padding="24dp"
                     android:clipChildren="false"
                     android:clipToPadding="false"
@@ -44,8 +45,8 @@
                     android:id="@+id/clothing_item_dots_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_alignBottom="@id/clothing_item_pager"
                     android:layout_marginBottom="2dp">
 
                     <TextView
@@ -64,12 +65,14 @@
                         android:layout_height="wrap_content"
                         android:text="&#8226;"
                         android:layout_marginHorizontal="2dp"
+                        android:gravity="center_vertical"
                         android:layout_gravity="center_vertical"
                         />
                 </LinearLayout>
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/clothing_item_price_layout"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
@@ -110,48 +113,32 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_weight="2"
                 android:text="The highly anticipated release is here; Introducing the Harrison Sherpa Jacket in Brown.
-                \nCreated to provide a winter staple with an outdoor aesthetic that doesn't compromise style or sophistication.
-                \nConstructed from high quality sherpa outing with a mesh lining for both warmth and breathability."
+            \nCreated to provide a winter staple with an outdoor aesthetic that doesn't compromise style or sophistication.
+            \nConstructed from high quality sherpa outing with a mesh lining for both warmth and breathability."
                 />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                tools:context=".activities.ClothingItemActivity">
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    android:id="@+id/clothing_item_save_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:text="SAVE"
-                    android:layout_margin="10dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/Widget.Material3.Button"
-                    android:id="@+id/clothing_item_cart_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:text="ADD TO CART"
-                    android:layout_margin="10dp"/>
-
-            </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/clothing_item_cart_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right|end"
+        android:layout_marginHorizontal="16dp"
+        android:translationY="-20dp"
+        android:contentDescription="Add to Cart"
+        android:src="@drawable/ic_add"
+        app:layout_anchor="@id/fragment_container_view"
+        app:layout_anchorGravity="top|right|end" />
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/fragment_container_view"
+        android:layout_gravity="bottom|start"
+        app:layout_anchorGravity="bottom|start"
         android:name="com.example.clothingapp.fragments.NavigationBar"
-        />
-</LinearLayout>
+            />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+

@@ -3,4 +3,5 @@
     <dimen name="category_card_height">75dp</dimen>
     <dimen name="trending_card_width">150dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="clothing_image_height">400dp</dimen>
 </resources>

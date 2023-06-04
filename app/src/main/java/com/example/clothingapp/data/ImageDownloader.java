@@ -60,14 +60,13 @@ public class ImageDownloader {
             try {
                 InputStream in = new java.net.URL(url).openStream();
                 mImage = BitmapFactory.decodeStream(in);
+
+                final var image = Bitmap.createBitmap(mImage, mImage.getWidth()/4, 0, mImage.getWidth()/2, mImage.getHeight());
+                imageCache.put(url, image);
+                handler.post(() -> callback.onComplete(image, index));
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());
-                e.printStackTrace();
             }
-
-            final var image = Bitmap.createBitmap(mImage, mImage.getWidth()/4, 0, mImage.getWidth()/2, mImage.getHeight());
-            imageCache.put(url, image);
-            handler.post(() -> callback.onComplete(image, index));
         });
     }
 }

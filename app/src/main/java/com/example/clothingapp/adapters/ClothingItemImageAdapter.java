@@ -36,11 +36,12 @@ public class ClothingItemImageAdapter extends FragmentStateAdapter {
         ClothingItemImage fragment = new ClothingItemImage();
         fragment.setDownloader(downloader);
         if(position == 0) {
-            fragment.setSharedItemTransitionName("clto");
+            fragment.setSharedItemTransitionName("");
         }
 
         Bundle args = new Bundle();
         args.putString(ClothingItemImage.BUNDLE_IMAGE_URL_KEY, clothingItem.getImageUrls().get(position));
+        args.putSerializable(ClothingItemImage.BUNDLE_ITEM_KEY, clothingItem);
         fragment.setArguments(args);
 
         return fragment;

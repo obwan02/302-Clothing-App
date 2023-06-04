@@ -3,5 +3,9 @@
 
     <style name="IHateUglyThemeAnim" parent="IHateUglyTheme">
         <item name="android:windowContentTransitions">true</item>
+
+        <!-- Change the notification and navigation button colours -->
+        <item name="android:colorPrimaryDark">?android:attr/colorBackground</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
     </style>
 </resources>

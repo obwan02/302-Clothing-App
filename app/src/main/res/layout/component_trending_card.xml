@@ -1,58 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="@dimen/trending_card_width"
-        android:layout_height="match_parent"
-        android:layout_margin="12dp"
-        android:checkable="false"
-        app:strokeWidth="0dp"
-        app:cardElevation="2dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
 
-            <!-- TODO: Remove shadows looking shit -->
-            <FrameLayout
+    android:layout_width="@dimen/trending_card_width"
+    android:layout_height="match_parent"
+    android:layout_margin="12dp"
+    android:checkable="false"
+    app:strokeWidth="0dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/trending_card_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/trending_card_text"
+            android:adjustViewBounds="true"
+            android:padding="0dp"
+            android:scaleType="center"
+            android:src="@drawable/sherpa_jacket_brown"
+            android:tag="@string/card_list_adapter_image_tag" />
+
+            <TextView
+                android:id="@+id/trending_card_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:elevation="1dp"
-                android:background="?attr/colorSurface">
-                <TextView
-                    android:id="@+id/trending_card_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="CLOTHING ITEM"
-                    android:lines="1"
-                    android:ellipsize="end"
-                    android:padding="10dp"
-                    android:textColor="?attr/colorOnSurface"
-                    android:textAllCaps="true"
-                    android:tag="@string/card_list_adapter_name_tag"
-                    android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="12sp"
-                    android:autoSizeMaxTextSize="100sp"
-                    android:autoSizeStepGranularity="2sp"
-                    />
-            </FrameLayout>
+                app:layout_constraintTop_toBottomOf="@id/trending_card_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="CLOTHING ITEM"
+                android:lines="1"
+                android:ellipsize="end"
+                android:padding="10dp"
+                android:textColor="?attr/colorOnSurface"
+                android:textAllCaps="true"
+                android:tag="@string/card_list_adapter_name_tag"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="100sp"
+                android:autoSizeStepGranularity="2sp"
+                />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/trending_card_image"
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:padding="0dp"
-                android:scaleType="center"
-                android:src="@drawable/sherpa_jacket_brown"
-                android:tag="@string/card_list_adapter_image_tag" />
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
-</FrameLayout>
+</com.google.android.material.card.MaterialCardView>

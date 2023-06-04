@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
@@ -34,22 +37,25 @@ public class ClothingItemActivity extends AppCompatActivity {
     public static final String INTENT_CLOTHING_ITEM_KEY = "clothingItem";
     public static final String TRANSITION_SHARED_IMAGE_NAME = "clothingItemImage";
 
+    private static final float DOT_UNSELECTED_SP = 14.0f;
+    private static final float DOT_SELECTED_SP = 20.0f;
+
     private static class ViewHolder {
         private final ViewPager2 images;
         private final TextView price;
         private final TextView title;
         private final TextView description;
-        private final LinearLayout dotsLayout;
-        private final Button saveButton, addToCartButton;
+        private final LinearLayout dotsLayout, scrollLayout;
+        private final ImageButton addToCartButton;
 
         public ViewHolder(Activity activity) {
             this.images = activity.findViewById(R.id.clothing_item_pager);
             this.price = activity.findViewById(R.id.clothing_item_price);
             this.title = activity.findViewById(R.id.clothing_item_title);
             this.description = activity.findViewById(R.id.clothing_item_description);
-            this.saveButton = activity.findViewById(R.id.clothing_item_save_button);
             this.addToCartButton = activity.findViewById(R.id.clothing_item_cart_button);
 
+            this.scrollLayout = activity.findViewById(R.id.clothing_item_scroll_layout);
 
             this.dotsLayout = activity.findViewById(R.id.clothing_item_dots_layout);
             this.dotsLayout.removeAllViews();
@@ -81,18 +87,19 @@ public class ClothingItemActivity extends AppCompatActivity {
             Log.w(getPackageName(), "No ClothingItem passed to ClothingItemActivity");
         }
 
+        final var displayMetrics = getResources().getDisplayMetrics();
+
         vh.title.setText(item.getName());
         vh.price.setText(String.format("$ %.2f", item.getPrice()));
         vh.description.setText(Html.fromHtml(item.getDescription(), Html.FROM_HTML_SEPARATOR_LINE_BREAK_BLOCKQUOTE));
 
         vh.images.setAdapter(new ClothingItemImageAdapter(this, item));
-        var margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics());
+        var margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, displayMetrics);
         vh.images.setPageTransformer(new MarginPageTransformer((int) margin));
         initDots(item);
         vh.images.registerOnPageChangeCallback(new ImageChangedCallback());
 
         // Button callbacks
-        vh.saveButton.setOnClickListener(v -> this.onSaveClicked(v));
         vh.addToCartButton.setOnClickListener(v -> this.onCartClicked(v));
     }
 
@@ -130,12 +137,7 @@ public class ClothingItemActivity extends AppCompatActivity {
     }
 
     private TextView selectDot(TextView tv) {
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-        return tv;
-    }
-
-    private TextView deselectDot(TextView tv) {
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, DOT_SELECTED_SP);
         return tv;
     }
 
@@ -151,8 +153,18 @@ public class ClothingItemActivity extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            deselectDot((TextView) vh.dotsLayout.getChildAt(lastSelectedIndex));
-            selectDot((TextView) vh.dotsLayout.getChildAt(position));
+            final TextView prev = (TextView) vh.dotsLayout.getChildAt(lastSelectedIndex);
+            final TextView curr = (TextView) vh.dotsLayout.getChildAt(position);
+
+            // Setup animation
+            var anim = ValueAnimator.ofFloat(0, DOT_SELECTED_SP - DOT_UNSELECTED_SP);
+            anim.setDuration(150); // milliseconds
+            anim.addUpdateListener(x -> {
+                prev.setTextSize(TypedValue.COMPLEX_UNIT_SP, DOT_SELECTED_SP - (Float) x.getAnimatedValue());
+                curr.setTextSize(TypedValue.COMPLEX_UNIT_SP, DOT_UNSELECTED_SP + (Float) x.getAnimatedValue());
+            });
+            anim.start();
+
             lastSelectedIndex = position;
         }
     }
