@@ -10,3 +10,18 @@ in the COMPSYS302 course.
 Dark Theme                                            |  Light Theme
 :----------------------------------------------------:|:---------------------------------------------:
 ![home page - light theme](img/home_page_light.png)   |  ![home page - dark theme](img/home_page_dark.png)
+
+### Search Page
+Dark Theme                                              |  Light Theme
+:------------------------------------------------------:|:---------------------------------------------:
+![search page - light theme](img/search_page_light.png) |  ![search page - dark theme](img/search_page_dark.png)
+
+### Item Detail Page
+Dark Theme                                                   |  Light Theme
+:-----------------------------------------------------------:|:---------------------------------------------:
+![item detail page - light theme](img/info_page_light.png)   |  ![item detail page - dark theme](img/info_page_dark.png)
+
+### Search Filter Popup
+Dark Theme                                                          |  Light Theme
+:------------------------------------------------------------------:|:---------------------------------------------:
+![search filter popup - light theme](img/search_filter_light.png)   |  ![search filter popup - dark theme](img/search_filter_dark.png)
