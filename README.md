@@ -7,7 +7,6 @@ in the COMPSYS302 course.
 ## Photo Gallery / App Examples
 
 ### Home Page
-<img src="img/home_page_light.png" alt="home page - light theme" width="200"/>
-<img src="img/home_page_dark.png" alt="home page - dark
-theme" width="200"/>
-
+Dark Theme                                            |  Light Theme
+:----------------------------------------------------:|:---------------------------------------------:
+![home page - light theme](img/home_page_light.png)   |  ![home page - dark theme](img/home_page_dark.png)
