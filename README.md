@@ -12,9 +12,9 @@ Dark Theme                                            |  Light Theme
 ![home page - light theme](img/home_page_light.png)   |  ![home page - dark theme](img/home_page_dark.png)
 
 ### Search Page
-Dark Theme                                              |  Light Theme
-:------------------------------------------------------:|:---------------------------------------------:
-![search page - light theme](img/search_page_light.png) |  ![search page - dark theme](img/search_page_dark.png)
+Dark Theme                                         |  Light Theme
+:-------------------------------------------------:|:---------------------------------------------:
+![search page - light theme](img/search_light.png) |  ![search page - dark theme](img/search_dark.png)
 
 ### Item Detail Page
 Dark Theme                                                   |  Light Theme
